@@ -1,16 +1,16 @@
 import React from 'react';
 import { isNil } from "ramda";
 
-interface IInputTextProps {
+interface IInputNumberProps {
   name: string
   label?: string
 
   onChange?: (changeEvent: { name: string, value: number }) => void
 }
 
-export class InputText extends React.PureComponent<IInputTextProps> {
+export class InputNumber extends React.PureComponent<IInputNumberProps> {
 
-  constructor (props: IInputTextProps) {
+  constructor (props: IInputNumberProps) {
     super(props)
 
     this.onChange = this.onChange.bind(this)

@@ -1,6 +1,6 @@
 import React from 'react';
 import { isNil } from 'ramda';
-import { InputText } from '../Inputs/InputText'
+import { InputNumber } from '../Inputs/InputNumber'
 
 interface ITownData {
   population: number,
@@ -50,10 +50,10 @@ export class TownFields extends React.PureComponent<ITownFieldsProps, ITownField
       <div>
         <div>Town</div>
 
-        <InputText name='population' onChange={this.onTextChange} />
-        <InputText name='workingPopulation' onChange={this.onTextChange} />
-        <InputText name='daily3HrCollections' onChange={this.onTextChange} />
-        <InputText name='daily9HrCollections' onChange={this.onTextChange} />
+        <InputNumber name='population' onChange={this.onTextChange} />
+        <InputNumber name='workingPopulation' onChange={this.onTextChange} />
+        <InputNumber name='daily3HrCollections' onChange={this.onTextChange} />
+        <InputNumber name='daily9HrCollections' onChange={this.onTextChange} />
 
         <button onClick={this.onSaveClick}>Save</button>
       </div>
