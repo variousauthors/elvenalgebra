@@ -1,20 +1,23 @@
 import React from 'react';
 import './App.css';
 import { TownFields } from './components/Fields/TownFields';
-import { WithFields } from './contexts/withFields';
+import { State } from "./contexts/State";
+import { IState } from './types/state';
+
+const selectPopulation = (state: IState) => ({ population: state.fields.population })
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <TownFields onSave={console.log} />
 
-      <WithFields>
-        {(props) => {
+      <State selector={selectPopulation} >
+        {(state) => {
           return (
-            <div>population: { props.population }</div>
+            <div>population: { state.population }</div>
           )
         }}
-      </WithFields>
+      </State>
     </div>
   );
 }
