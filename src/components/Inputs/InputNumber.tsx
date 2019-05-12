@@ -8,31 +8,22 @@ interface IInputNumberProps {
   onChange?: (changeEvent: { name: string, value: number }) => void
 }
 
-export class InputNumber extends React.PureComponent<IInputNumberProps> {
+export const InputNumber = (props: IInputNumberProps) => {
+  const { name, value } = props
 
-  constructor (props: IInputNumberProps) {
-    super(props)
+  return (
+    <div>
+      <label htmlFor={name}>{name}</label>
+      <input value={value} name={name} type='number' onChange={onChange} />
+    </div>
+  )
 
-    this.onChange = this.onChange.bind(this)
-  }
+  function onChange (e: React.ChangeEvent<HTMLInputElement>) {
+    if (isNil(props.onChange)) return
 
-  onChange (e: React.ChangeEvent<HTMLInputElement>) {
-    if (isNil(this.props.onChange)) return
-
-    this.props.onChange({
-      name: this.props.name,
+    props.onChange({
+      name: props.name,
       value: parseInt(e.target.value)
     })
-  }
-
-  render () {
-    const { name, value } = this.props
-
-    return (
-      <div>
-        <label htmlFor={name}>{name}</label>
-        <input value={value} name={name} type='number' onChange={this.onChange} />
-      </div>
-    )
   }
 }
