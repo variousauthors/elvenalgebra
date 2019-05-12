@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { isNil } from 'ramda';
 import { InputNumber } from '../Inputs/InputNumber'
-import { IFields } from '../../types/state';
+import { ITownFields } from '../../types/state';
 
 interface ITownFieldsProps {
   population: number
@@ -9,10 +9,10 @@ interface ITownFieldsProps {
   daily3HrCollections: number
   daily9HrCollections: number
 
-  onSave: (fields: IFields) => void
+  onSave: (fields: ITownFields) => void
 }
 
-interface IDraftFields extends IFields {
+interface IDraftFields extends ITownFields {
   stale?: boolean
 }
 

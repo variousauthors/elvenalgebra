@@ -1,1 +1,2 @@
-export * from './fieldsReducer'
+export * from './townFieldsReducer'
+export * from './roadFieldsReducer'

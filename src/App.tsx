@@ -1,29 +1,32 @@
 import React from 'react';
 import './App.css';
 import { TownFields } from './components/Fields/TownFields';
-import { IState, IFields } from './types/state';
+import { RoadFields } from './components/Fields/RoadFields';
+import { IState } from './types/state';
 import {useMapState, useActionCreators} from "@epeli/redux-hooks";
+import { updateTownFields, updateRoadFields } from './reducers';
 
 const ActionCreators = {
-  updateFields(data: IFields) {
-    return {
-      type: 'UPDATE_FIELDS',
-      data
-    }
-  }
+  updateTownFields,
+  updateRoadFields,
 }
 
 const App = () => {
-  const fields = useMapState((state: IState) => state.fields)
+  const townFields = useMapState((state: IState) => state.townFields)
+  const roadFields = useMapState((state: IState) => state.roadFields)
   const actions = useActionCreators(ActionCreators)
 
   return (
     <div className="App">
       <TownFields
-        onSave={actions.updateFields}
-        {...fields}
+        onSave={actions.updateTownFields}
+        {...townFields}
       />
-      <div>population: {fields.population}</div>
+      <RoadFields
+        onSave={actions.updateRoadFields}
+        {...roadFields}
+      />
+      <div>population: {townFields.population}</div>
     </div>
   )
 }
