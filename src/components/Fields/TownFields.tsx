@@ -1,39 +1,28 @@
 import React from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
 import { ITownFields } from '../../types/state';
-import { isNil } from 'ramda';
 import { useDraft } from '../../hooks';
 
-interface ITownFieldsProps {
-  population: number
-  workingPopulation: number
-  daily3HrCollections: number
-  daily9HrCollections: number
-
+interface ITownFieldsProps extends ITownFields {
   onSave: (fields: ITownFields) => void
 }
 
 export const TownFields = (props: ITownFieldsProps) => {
-  const { draft, onChange, onPublish } = useDraft<ITownFields>(props)
+  const { draft, update, publish } = useDraft<ITownFields>({
+    ...props,
+    onPublish: props.onSave
+  })
 
   return (
     <div>
       <div>{'Town'}</div>
 
-      <InputNumber value={draft.population} name='population' onChange={onChange} />
-      <InputNumber value={draft.workingPopulation} name='workingPopulation' onChange={onChange} />
-      <InputNumber value={draft.daily3HrCollections} name='daily3HrCollections' onChange={onChange} />
-      <InputNumber value={draft.daily9HrCollections} name='daily9HrCollections' onChange={onChange} />
+      <InputNumber value={draft.population} name='population' onChange={update} />
+      <InputNumber value={draft.workingPopulation} name='workingPopulation' onChange={update} />
+      <InputNumber value={draft.daily3HrCollections} name='daily3HrCollections' onChange={update} />
+      <InputNumber value={draft.daily9HrCollections} name='daily9HrCollections' onChange={update} />
 
-      <button onClick={onSaveClick}>Save</button>
+      <button onClick={publish}>Save</button>
     </div>
   )
-
-  function onSaveClick() {
-    if (isNil(props.onSave)) return
-
-    onPublish()
-
-    props.onSave(draft)
-  }
 }

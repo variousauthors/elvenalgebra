@@ -1,4 +1,5 @@
 import { ITownFields } from "../types/state";
+import { Action } from "redux";
 
 const initialState: ITownFields = {
   population: 0,
@@ -11,8 +12,7 @@ enum TownFieldsActions {
   UPDATE_TOWN_FIELDS = 'UPDATE_TOWN_FIELDS'
 }
 
-interface IAction<T, K> {
-  type: T,
+interface IAction<T, K> extends Action<T> {
   data: K
 }
 
@@ -25,7 +25,7 @@ export const updateTownFields = (data: ITownFields): ITownFieldsAction => {
   }
 }
 
-export const townFieldsReducer = (state: ITownFields = initialState, action: ITownFieldsAction): ITownFields => {
+export const townFields = (state: ITownFields = initialState, action: ITownFieldsAction): ITownFields => {
 
   switch (action.type) {
     case TownFieldsActions.UPDATE_TOWN_FIELDS: {

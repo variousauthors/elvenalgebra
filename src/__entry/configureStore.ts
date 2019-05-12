@@ -3,16 +3,19 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-import { roadFieldsReducer, townFieldsReducer } from '../reducers'
+import { IState, IAnyAction } from '../types/state';
+import { townFields, roadFields, cultureFields, residenceFields } from '../reducers';
 
 const persistConfig = {
   key: 'root',
   storage,
 }
 
-const rootReducer = combineReducers({
-  townFields: townFieldsReducer,
-  roadFields: roadFieldsReducer
+const rootReducer = combineReducers<IState, IAnyAction>({
+  townFields,
+  roadFields,
+  residenceFields,
+  cultureFields,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

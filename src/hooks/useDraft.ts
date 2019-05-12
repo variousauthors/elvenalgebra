@@ -1,24 +1,37 @@
 import { useState } from 'react';
+import { isNil } from 'ramda';
 
-export const useDraft = <TProps>(props: TProps) => {
+interface IPublishProps<TProps> {
+  onPublish: (fields: TProps) => void
+}
+
+export const useDraft = <TProps>(props: TProps & IPublishProps<TProps>) => {
   const [stale, setStale] = useState(false)
-  const [draft, updateDraft] = useState({ ...props })
+  const [draft, setDraft] = useState<TProps>({ ...props })
 
   if (stale) {
     resetDraft(props)
   }
 
-  return { draft, onChange, onPublish: () => setStale(true) }
+  return { draft, update, publish }
 
   function resetDraft(props: TProps) {
     setStale(false)
-    updateDraft({ ...props })
+    setDraft({ ...props })
   }
 
-  function onChange(change: Partial<TProps>) {
-    updateDraft({
+  function update(change: Partial<TProps>) {
+    setDraft({
       ...draft,
       ...change,
     })
+  }
+
+  function publish() {
+    if (isNil(props.onPublish)) return
+
+    setStale(true)
+
+    props.onPublish(draft)
   }
 }

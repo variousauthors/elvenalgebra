@@ -1,33 +1,25 @@
 import React from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
-import { isNil } from 'ramda';
-import { IRoadFields } from '../../types/state';
+import { IRoadsFields } from '../../types/state';
 import { useDraft } from '../../hooks';
 
-interface IRoadFieldProps {
-  culture: number
-
-  onSave: (fields: IRoadFields) => void
+interface IRoadFieldProps extends IRoadsFields {
+  onSave: (fields: IRoadsFields) => void
 }
 
 export const RoadFields = (props: IRoadFieldProps) => {
-  const { draft, onChange, onPublish } = useDraft<IRoadFields>(props)
+  const { draft, update, publish } = useDraft<IRoadsFields>({
+    ...props,
+    onPublish: props.onSave
+  })
 
   return (
     <div>
       <div>{'Roads'}</div>
 
-      <InputNumber value={draft.culture} name='culture' onChange={onChange} />
+      <InputNumber value={draft.culture} name='culture' onChange={update} />
 
-      <button onClick={onSaveClick}>Save</button>
+      <button onClick={publish}>Save</button>
     </div>
   )
-
-  function onSaveClick() {
-    if (isNil(props.onSave)) return
-
-    onPublish()
-
-    props.onSave(draft)
-  }
 }
