@@ -1,4 +1,4 @@
-import { IEventBuilding, IEventBuildings, IEventBuildingAttributes } from "../types";
+import { IEventBuilding, IEventBuildings, IEventBuildingAttributes, IState } from "../types";
 import { isNumber } from "util";
 
 const initialState: IEventBuildings = { 
@@ -27,6 +27,14 @@ type EventBuildingAction = IAddEventBuildingAction
 
 interface IUpdateEventBuildingAction extends IAction<EventBuildingActions.UPDATE_EVENT_BUILDING, IEventBuilding> {}
 interface IAddEventBuildingAction extends IAction<EventBuildingActions.ADD_EVENT_BUILDING, undefined> {}
+
+export const selectAllEventBuildings = (state: IState): IEventBuilding[] => {
+  return Object.values(state.eventBuildings).reduce((memo, eventBuilding) => {
+    if (isNumber(eventBuilding)) return memo
+
+    return memo.concat(eventBuilding)
+  }, [] as IEventBuilding[])
+}
 
 export const updateEventBuilding = (data: IEventBuilding): IUpdateEventBuildingAction => {
   return {

@@ -3,6 +3,7 @@ import './App.css';
 import { IState } from './types/state';
 import {useMapState, useActionCreators} from "@epeli/redux-hooks";
 import { TownFields, RoadFields, ResidenceFields, CultureFields } from './components/Fields';
+import { EventBuildingsPanel } from './components/EventBuildingsPanel';
 import { ActionCreators } from './reducers';
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         onSave={actions.updateCultureFields}
         {...cultureFields}
       />
+      <EventBuildingsPanel />
       <div>population: {townFields.population}</div>
     </div>
   )
