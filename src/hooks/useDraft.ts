@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useDraft<TProps>(props: TProps) {
+export const useDraft = <TProps>(props: TProps) => {
   const [stale, setStale] = useState(false)
   const [draft, updateDraft] = useState({ ...props })
 

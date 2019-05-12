@@ -1,8 +1,8 @@
 import React from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
 import { ITownFields } from '../../types/state';
-import { useDraft } from './Fields';
 import { isNil } from 'ramda';
+import { useDraft } from '../../hooks';
 
 interface ITownFieldsProps {
   population: number

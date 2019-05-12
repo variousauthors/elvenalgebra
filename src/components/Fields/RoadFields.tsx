@@ -1,8 +1,8 @@
 import React from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
-import { useDraft } from './Fields';
 import { isNil } from 'ramda';
 import { IRoadFields } from '../../types/state';
+import { useDraft } from '../../hooks';
 
 interface IRoadFieldProps {
   culture: number
