@@ -1,5 +1,6 @@
 import { IEventBuilding, IEventBuildings, IEventBuildingAttributes, IState } from "../types";
 import { isNumber } from "util";
+import isNil from "ramda/es/isNil";
 
 const initialState: IEventBuildings = { 
   nextId: 1
@@ -14,7 +15,8 @@ const newEventBuilding: IEventBuildingAttributes = {
 
 enum EventBuildingActions {
   UPDATE_EVENT_BUILDING = 'UPDATE_EVENT_BUILDING',
-  ADD_EVENT_BUILDING = 'ADD_EVENT_BUILDING'
+  ADD_EVENT_BUILDING = 'ADD_EVENT_BUILDING',
+  DELETE_EVENT_BUILDING = 'DELETE_EVENT_BUILDING'
 }
 
 interface IAction<T, K> {
@@ -24,13 +26,15 @@ interface IAction<T, K> {
 
 type EventBuildingAction = IAddEventBuildingAction
   | IUpdateEventBuildingAction
+  | IDeleteEventBuildingAction
 
 interface IUpdateEventBuildingAction extends IAction<EventBuildingActions.UPDATE_EVENT_BUILDING, IEventBuilding> {}
 interface IAddEventBuildingAction extends IAction<EventBuildingActions.ADD_EVENT_BUILDING, undefined> {}
+interface IDeleteEventBuildingAction extends IAction<EventBuildingActions.DELETE_EVENT_BUILDING, { id: number }> {}
 
 export const selectAllEventBuildings = (state: IState): IEventBuilding[] => {
   return Object.values(state.eventBuildings).reduce((memo, eventBuilding) => {
-    if (isNumber(eventBuilding)) return memo
+    if (isNumber(eventBuilding) || isNil(eventBuilding)) return memo
 
     return memo.concat(eventBuilding)
   }, [] as IEventBuilding[])
@@ -47,6 +51,15 @@ export const addEventBuilding = (): IAddEventBuildingAction => {
   return {
     type: EventBuildingActions.ADD_EVENT_BUILDING,
     data: undefined
+  }
+}
+
+export const deleteEventBuilding = (data: IEventBuilding): IDeleteEventBuildingAction => {
+  return {
+    type: EventBuildingActions.DELETE_EVENT_BUILDING,
+    data: {
+      id: data.id
+    }
   }
 }
 
@@ -91,6 +104,14 @@ export const eventBuildingsReducer = (state: IEventBuildings = initialState, act
       return {
         ...state,
         [id]: eventBuildingReducer(eventBuilding, action)
+      }
+    }
+    case EventBuildingActions.DELETE_EVENT_BUILDING: {
+      const id = action.data.id
+
+      return {
+        ...state,
+        [id]: undefined
       }
     }
     default: {

@@ -3,7 +3,7 @@ import { updateRoadFields } from './roadFieldsReducer'
 import { updateResidenceFields } from './residenceFieldsReducer'
 import { updateCultureFields } from './cultureFieldsReducer'
 
-import { updateEventBuilding, addEventBuilding } from './eventBuildingReducer'
+import { updateEventBuilding, addEventBuilding, deleteEventBuilding } from './eventBuildingReducer'
 
 export { townFields } from './townFieldsReducer'
 export { roadFields } from './roadFieldsReducer'
@@ -18,5 +18,6 @@ export const ActionCreators = {
   updateRoadFields,
   updateTownFields,
   updateEventBuilding,
-  addEventBuilding
+  addEventBuilding,
+  deleteEventBuilding
 }

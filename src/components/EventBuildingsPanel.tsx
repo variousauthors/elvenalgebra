@@ -12,6 +12,7 @@ export const EventBuildingsPanel = () => {
     return (
       <EventBuildingFields
         onSave={actions.updateEventBuilding}
+        onRemove={actions.deleteEventBuilding}
         {...eventBuilding}
       />
     )
@@ -19,6 +20,8 @@ export const EventBuildingsPanel = () => {
 
   return (
     <div>
+      <div>Event Buildings</div>
+      <button onClick={actions.addEventBuilding}>Add</button>
       {fields}
     </div>
   )

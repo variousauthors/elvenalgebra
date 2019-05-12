@@ -5,6 +5,7 @@ import { useDraft } from '../../hooks';
 
 interface IEventBuildingFieldsProps extends IEventBuilding {
   onSave: (fields: IEventBuilding) => void
+  onRemove: (fields: IEventBuilding) => void
 }
 
 export const EventBuildingFields = (props: IEventBuildingFieldsProps) => {
@@ -23,6 +24,7 @@ export const EventBuildingFields = (props: IEventBuildingFieldsProps) => {
       <InputNumber value={draft.height} name='height' onChange={update} />
 
       <button onClick={publish}>Save</button>
+      <button onClick={() => props.onRemove(props)}>Remove</button>
     </div>
   )
 }
