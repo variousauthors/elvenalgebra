@@ -30,6 +30,23 @@ export interface IState {
   roadFields: IRoadsFields
   residenceFields: IResidenceFields
   cultureFields: ICultureFields
+  eventBuildings: IEventBuildings
+}
+
+export interface IEventBuildings {
+  nextId: number
+  [key: string]: IEventBuilding | number
+}
+
+export interface IEventBuildingAttributes {
+  width: number
+  height: number
+  culture: number
+  population: number
+}
+
+export interface IEventBuilding extends IEventBuildingAttributes {
+  id: number
 }
 
 export interface IAnyAction extends Action<any> {
