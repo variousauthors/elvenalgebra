@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
 import { ITownFields } from '../../types/state';
-import { makeFields } from './Fields';
+import { useDraft } from './Fields';
+import { isNil } from 'ramda';
 
 interface ITownFieldsProps {
   population: number
@@ -12,25 +13,27 @@ interface ITownFieldsProps {
   onSave: (fields: ITownFields) => void
 }
 
-const Fields = makeFields<ITownFields>()
-
 export const TownFields = (props: ITownFieldsProps) => {
+  const { draft, onChange, onPublish } = useDraft<ITownFields>(props)
+
   return (
     <div>
-      <Fields
-        label={'Town'}
-        onSave={props.onSave}
-        {...props}
-      >
-        {({ fields, setFields: onChange }) =>
-          <Fragment>
-            <InputNumber value={fields.population} name='population' onChange={onChange} />
-            <InputNumber value={fields.workingPopulation} name='workingPopulation' onChange={onChange} />
-            <InputNumber value={fields.daily3HrCollections} name='daily3HrCollections' onChange={onChange} />
-            <InputNumber value={fields.daily9HrCollections} name='daily9HrCollections' onChange={onChange} />
-          </Fragment>
-        }
-      </Fields>
+      <div>{'Town'}</div>
+
+      <InputNumber value={draft.population} name='population' onChange={onChange} />
+      <InputNumber value={draft.workingPopulation} name='workingPopulation' onChange={onChange} />
+      <InputNumber value={draft.daily3HrCollections} name='daily3HrCollections' onChange={onChange} />
+      <InputNumber value={draft.daily9HrCollections} name='daily9HrCollections' onChange={onChange} />
+
+      <button onClick={onSaveClick}>Save</button>
     </div>
   )
+
+  function onSaveClick() {
+    if (isNil(props.onSave)) return
+
+    onPublish()
+
+    props.onSave(draft)
+  }
 }

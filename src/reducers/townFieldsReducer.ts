@@ -8,7 +8,7 @@ const initialState: ITownFields = {
 }
 
 enum TownFieldsActions {
-  UPDATE_FIELDS = 'UPDATE_FIELDS'
+  UPDATE_TOWN_FIELDS = 'UPDATE_TOWN_FIELDS'
 }
 
 interface IAction<T, K> {
@@ -20,7 +20,7 @@ interface ITownFieldsAction extends IAction<TownFieldsActions, ITownFields> {}
 
 export const updateTownFields = (data: ITownFields): ITownFieldsAction => {
   return {
-    type: TownFieldsActions.UPDATE_FIELDS,
+    type: TownFieldsActions.UPDATE_TOWN_FIELDS,
     data
   }
 }
@@ -28,7 +28,7 @@ export const updateTownFields = (data: ITownFields): ITownFieldsAction => {
 export const townFieldsReducer = (state: ITownFields = initialState, action: ITownFieldsAction): ITownFields => {
 
   switch (action.type) {
-    case TownFieldsActions.UPDATE_FIELDS: {
+    case TownFieldsActions.UPDATE_TOWN_FIELDS: {
       return {
         ...state,
         ...action.data

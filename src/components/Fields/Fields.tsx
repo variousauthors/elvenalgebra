@@ -1,58 +1,24 @@
-import React, { useState } from 'react';
-import { isNil } from 'ramda';
+import { useState } from 'react';
 
-export function makeFields <TProps>() {
-  interface IBaseProps {
-    label: string
-    onSave: (fields: TProps) => void
-    children: (props: { fields: TProps, setFields: (props: Partial<TProps>) => void}) => JSX.Element
+export function useDraft<TProps>(props: TProps) {
+  const [stale, setStale] = useState(false)
+  const [draft, updateDraft] = useState({ ...props })
+
+  if (stale) {
+    resetDraft(props)
   }
 
-  const makeDraft = (props: TProps) => {
-    return {
-      ...props
-    }
+  return { draft, onChange, onPublish: () => setStale(true) }
+
+  function resetDraft(props: TProps) {
+    setStale(false)
+    updateDraft({ ...props })
   }
 
-  return (props: TProps & IBaseProps) => {
-    const [stale, setStale] = useState(false)
-    const [draft, updateDraft] = useState(makeDraft(props))
-
-    if (stale) {
-      resetDraft(props)
-    }
-
-    return (
-      <div>
-        <div>{props.label}</div>
-
-        {props.children({
-          fields: draft,
-          setFields: onChange
-        })}
-
-        <button onClick={onSaveClick}>Save</button>
-      </div>
-    )
-
-    function resetDraft(props: TProps) {
-      setStale(false)
-      updateDraft(makeDraft(props))
-    }
-
-    function onChange(change: Partial<TProps>) {
-      updateDraft({
-        ...draft,
-        ...change,
-      })
-    }
-
-    function onSaveClick() {
-      if (isNil(props.onSave)) return
-
-      setStale(true)
-
-      props.onSave(draft)
-    }
+  function onChange(change: Partial<TProps>) {
+    updateDraft({
+      ...draft,
+      ...change,
+    })
   }
 }

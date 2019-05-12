@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { isNil } from 'ramda';
+import React from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
+import { useDraft } from './Fields';
+import { isNil } from 'ramda';
 import { IRoadFields } from '../../types/state';
 
 interface IRoadFieldProps {
@@ -9,59 +10,23 @@ interface IRoadFieldProps {
   onSave: (fields: IRoadFields) => void
 }
 
-interface IDraftFields extends IRoadFields {
-  stale?: boolean
-}
-
-interface ITownField {
-  name: string
-  value: number
-}
-
-const makeDraft = (props: IRoadFieldProps): IDraftFields => {
-  return {
-    culture: props.culture
-  }
-}
-
 export const RoadFields = (props: IRoadFieldProps) => {
-  const [stale, setStale] = useState(false)
-  const [draft, updateDraft] = useState(makeDraft(props))
-
-  if (stale) {
-    resetDraft(props)
-  }
-
-  const {
-    culture
-  } = draft
+  const { draft, onChange, onPublish } = useDraft<IRoadFields>(props)
 
   return (
     <div>
-      <div>Town</div>
+      <div>{'Roads'}</div>
 
-      <InputNumber value={culture} name='culture' onChange={onChange} />
+      <InputNumber value={draft.culture} name='culture' onChange={onChange} />
 
       <button onClick={onSaveClick}>Save</button>
     </div>
   )
 
-  function resetDraft (props: IRoadFieldProps) {
-    setStale(false)
-    updateDraft(makeDraft(props))
-  }
-
-  function onChange (change: Partial<IRoadFields>) {
-    updateDraft({
-      ...draft,
-      ...change,
-    })
-  }
-
-  function onSaveClick () {
+  function onSaveClick() {
     if (isNil(props.onSave)) return
 
-    setStale(true)
+    onPublish()
 
     props.onSave(draft)
   }

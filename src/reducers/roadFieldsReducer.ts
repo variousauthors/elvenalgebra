@@ -5,7 +5,7 @@ const initialState: IRoadFields = {
 }
 
 enum RoadFieldsActions {
-  UPDATE_FIELDS = 'UPDATE_FIELDS'
+  UPDATE_ROAD_FIELDS = 'UPDATE_ROAD_FIELDS'
 }
 
 interface IAction<T, K> {
@@ -17,7 +17,7 @@ interface IRoadFieldsAction extends IAction<RoadFieldsActions, IRoadFields> {}
 
 export const updateRoadFields = (data: IRoadFields): IRoadFieldsAction => {
   return {
-    type: RoadFieldsActions.UPDATE_FIELDS,
+    type: RoadFieldsActions.UPDATE_ROAD_FIELDS,
     data
   }
 }
@@ -25,7 +25,7 @@ export const updateRoadFields = (data: IRoadFields): IRoadFieldsAction => {
 export const roadFieldsReducer = (state: IRoadFields = initialState, action: IRoadFieldsAction): IRoadFields => {
 
   switch (action.type) {
-    case RoadFieldsActions.UPDATE_FIELDS: {
+    case RoadFieldsActions.UPDATE_ROAD_FIELDS: {
       return {
         ...state,
         ...action.data
