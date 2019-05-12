@@ -12,16 +12,16 @@ interface ITownFieldsProps {
   onSave: (fields: IFields) => void
 }
 
-interface ITownFieldsState extends IFields {
+interface IDraftFields extends IFields {
   stale?: boolean
 }
 
-export interface ITownField {
+interface ITownField {
   name: string
   value: number
 }
 
-const mapPropsToState = (props: ITownFieldsProps): ITownFieldsState => {
+const makeDraft = (props: ITownFieldsProps): IDraftFields => {
   return {
     population: props.population,
     workingPopulation: props.workingPopulation,
@@ -32,11 +32,10 @@ const mapPropsToState = (props: ITownFieldsProps): ITownFieldsState => {
 
 export const TownFields = (props: ITownFieldsProps) => {
   const [stale, setStale] = useState(false)
-  const [fields, setFields] = useState(mapPropsToState(props))
+  const [draft, updateDraft] = useState(makeDraft(props))
 
   if (stale) {
-    setStale(false)
-    setFields(mapPropsToState(props))
+    resetDraft(props)
   }
 
   const {
@@ -44,7 +43,7 @@ export const TownFields = (props: ITownFieldsProps) => {
     workingPopulation,
     daily3HrCollections,
     daily9HrCollections
-  } = fields
+  } = draft
 
   return (
     <div>
@@ -59,9 +58,14 @@ export const TownFields = (props: ITownFieldsProps) => {
     </div>
   )
 
+  function resetDraft (props: ITownFieldsProps) {
+    setStale(false)
+    updateDraft(makeDraft(props))
+  }
+
   function onChange (change: ITownField) {
-    setFields({
-      ...fields,
+    updateDraft({
+      ...draft,
       [change.name]: change.value
     } as any)
   }
@@ -71,6 +75,6 @@ export const TownFields = (props: ITownFieldsProps) => {
 
     setStale(true)
 
-    props.onSave(fields)
+    props.onSave(draft)
   }
 }
