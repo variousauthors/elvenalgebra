@@ -51,11 +51,11 @@ export const RoadFields = (props: IRoadFieldProps) => {
     updateDraft(makeDraft(props))
   }
 
-  function onChange (change: ITownField) {
+  function onChange (change: Partial<IRoadFields>) {
     updateDraft({
       ...draft,
-      [change.name]: change.value
-    } as any)
+      ...change,
+    })
   }
 
   function onSaveClick () {

@@ -5,7 +5,7 @@ interface IInputNumberProps {
   name: string
   value: number
 
-  onChange?: (changeEvent: { name: string, value: number }) => void
+  onChange?: (changeEvent: { [key: string]: number }) => void
 }
 
 export const InputNumber = (props: IInputNumberProps) => {
@@ -22,8 +22,7 @@ export const InputNumber = (props: IInputNumberProps) => {
     if (isNil(props.onChange)) return
 
     props.onChange({
-      name: props.name,
-      value: parseInt(e.target.value)
+      [props.name]: parseInt(e.target.value)
     })
   }
 }

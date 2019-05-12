@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { isNil } from 'ramda';
+import React, { Fragment } from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
 import { ITownFields } from '../../types/state';
+import { makeFields } from './Fields';
 
 interface ITownFieldsProps {
   population: number
@@ -12,69 +12,25 @@ interface ITownFieldsProps {
   onSave: (fields: ITownFields) => void
 }
 
-interface IDraftFields extends ITownFields {
-  stale?: boolean
-}
-
-interface ITownField {
-  name: string
-  value: number
-}
-
-const makeDraft = (props: ITownFieldsProps): IDraftFields => {
-  return {
-    population: props.population,
-    workingPopulation: props.workingPopulation,
-    daily3HrCollections: props.daily3HrCollections,
-    daily9HrCollections: props.daily9HrCollections,
-  }
-}
+const Fields = makeFields<ITownFields>()
 
 export const TownFields = (props: ITownFieldsProps) => {
-  const [stale, setStale] = useState(false)
-  const [draft, updateDraft] = useState(makeDraft(props))
-
-  if (stale) {
-    resetDraft(props)
-  }
-
-  const {
-    population,
-    workingPopulation,
-    daily3HrCollections,
-    daily9HrCollections
-  } = draft
-
   return (
     <div>
-      <div>Town</div>
-
-      <InputNumber value={population} name='population' onChange={onChange} />
-      <InputNumber value={workingPopulation} name='workingPopulation' onChange={onChange} />
-      <InputNumber value={daily3HrCollections} name='daily3HrCollections' onChange={onChange} />
-      <InputNumber value={daily9HrCollections} name='daily9HrCollections' onChange={onChange} />
-
-      <button onClick={onSaveClick}>Save</button>
+      <Fields
+        label={'Town'}
+        onSave={props.onSave}
+        {...props}
+      >
+        {({ fields, setFields: onChange }) =>
+          <Fragment>
+            <InputNumber value={fields.population} name='population' onChange={onChange} />
+            <InputNumber value={fields.workingPopulation} name='workingPopulation' onChange={onChange} />
+            <InputNumber value={fields.daily3HrCollections} name='daily3HrCollections' onChange={onChange} />
+            <InputNumber value={fields.daily9HrCollections} name='daily9HrCollections' onChange={onChange} />
+          </Fragment>
+        }
+      </Fields>
     </div>
   )
-
-  function resetDraft (props: ITownFieldsProps) {
-    setStale(false)
-    updateDraft(makeDraft(props))
-  }
-
-  function onChange (change: ITownField) {
-    updateDraft({
-      ...draft,
-      [change.name]: change.value
-    } as any)
-  }
-
-  function onSaveClick () {
-    if (isNil(props.onSave)) return
-
-    setStale(true)
-
-    props.onSave(draft)
-  }
 }
