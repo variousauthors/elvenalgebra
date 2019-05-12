@@ -1,59 +1,85 @@
 import React from 'react';
 import { isNil } from 'ramda';
 import { InputNumber } from '../Inputs/InputNumber'
-
-interface ITownData {
-  population: number,
-  workingPopulation: number,
-  daily3HrCollections: number,
-  daily9HrCollections: number,
-}
+import { IFields } from '../../types/state';
 
 interface ITownFieldsProps {
-  onSave: (data: ITownData) => void
+  population: number
+  workingPopulation: number
+  daily3HrCollections: number
+  daily9HrCollections: number
+
+  onSave: (fields: IFields) => void
 }
 
-interface ITownFieldsState {
-  [key: string]: number
+interface ITownFieldsState extends IFields {
+  stale?: boolean
+}
+
+export interface ITownField {
+  name: string
+  value: number
+}
+
+const mapPropsToState = (props: ITownFieldsProps): ITownFieldsState => {
+  return {
+    population: props.population,
+    workingPopulation: props.workingPopulation,
+    daily3HrCollections: props.daily3HrCollections,
+    daily9HrCollections: props.daily9HrCollections,
+  }
 }
 
 export class TownFields extends React.PureComponent<ITownFieldsProps, ITownFieldsState> {
-  state = {
-    population: 0,
-    workingPopulation: 0,
-    daily3HrCollections: 0,
-    daily9HrCollections: 0,
-  }
 
-  constructor (props: any) {
+  constructor (props: ITownFieldsProps) {
     super(props)
 
-    this.onTextChange = this.onTextChange.bind(this)
+    this.state = {
+      stale: false,
+      ...mapPropsToState(props)
+    }
+
     this.onSaveClick = this.onSaveClick.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  onTextChange({ name, value }: { name: string, value: number }) {
+  onChange (change: ITownField) {
     this.setState({
-      [name]: value
-    })
+      [change.name]: change.value
+    } as any)
   }
 
   onSaveClick () {
     if (isNil(this.props.onSave)) return
 
+    this.setState({
+      stale: true
+    })
+
     this.props.onSave(this.state)
   }
 
+  static getDerivedStateFromProps (nextProps: ITownFieldsProps, prevState: ITownFieldsState) {
+    if (prevState.stale) {
+      return {
+        stale: false,
+        ...mapPropsToState(nextProps)
+      }
+    }
+
+    return null
+  }
+
   render () {
-    console.log(this.state)
     return (
       <div>
         <div>Town</div>
 
-        <InputNumber name='population' onChange={this.onTextChange} />
-        <InputNumber name='workingPopulation' onChange={this.onTextChange} />
-        <InputNumber name='daily3HrCollections' onChange={this.onTextChange} />
-        <InputNumber name='daily9HrCollections' onChange={this.onTextChange} />
+        <InputNumber value={this.state.population} name='population' onChange={this.onChange} />
+        <InputNumber value={this.state.workingPopulation} name='workingPopulation' onChange={this.onChange} />
+        <InputNumber value={this.state.daily3HrCollections} name='daily3HrCollections' onChange={this.onChange} />
+        <InputNumber value={this.state.daily9HrCollections} name='daily9HrCollections' onChange={this.onChange} />
 
         <button onClick={this.onSaveClick}>Save</button>
       </div>

@@ -3,15 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux'
-import { createStore, combineReducers } from 'redux';
-import { fieldsReducer } from './reducers/fields-reducer';
+import { configureStore } from './__entry/configureStore'
+import { PersistGate } from 'redux-persist/integration/react';
+import {HooksProvider} from "@epeli/redux-hooks";
+import { Provider } from 'react-redux';
 
-const store = createStore(combineReducers({ fields: fieldsReducer }))
+const { store, persistor } = configureStore()
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <HooksProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </HooksProvider>
   </Provider>,
   document.getElementById('root')
 );

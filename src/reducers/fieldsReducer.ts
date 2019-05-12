@@ -1,11 +1,14 @@
 import { IFields } from "../types/state";
 
-const initialState: IFields = {
-  population: 0
+export const initialState: IFields = {
+  population: 0,
+  workingPopulation: 0,
+  daily3HrCollections: 0,
+  daily9HrCollections: 0,
 }
 
 enum FieldsActions {
-  UPDATE_FIELDS
+  UPDATE_FIELDS = 'UPDATE_FIELDS'
 }
 
 interface IAction<T, K> {

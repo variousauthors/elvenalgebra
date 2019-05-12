@@ -3,7 +3,7 @@ import { isNil } from "ramda";
 
 interface IInputNumberProps {
   name: string
-  label?: string
+  value: number
 
   onChange?: (changeEvent: { name: string, value: number }) => void
 }
@@ -26,12 +26,12 @@ export class InputNumber extends React.PureComponent<IInputNumberProps> {
   }
 
   render () {
-    const name = this.props.name
+    const { name, value } = this.props
 
     return (
       <div>
         <label htmlFor={name}>{name}</label>
-        <input name={name} type='number' onChange={this.onChange} />
+        <input value={value} name={name} type='number' onChange={this.onChange} />
       </div>
     )
   }

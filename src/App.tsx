@@ -1,25 +1,31 @@
 import React from 'react';
 import './App.css';
 import { TownFields } from './components/Fields/TownFields';
-import { State } from "./contexts/State";
-import { IState } from './types/state';
+import { IState, IFields } from './types/state';
+import {useMapState, useActionCreators} from "@epeli/redux-hooks";
 
-const selectPopulation = (state: IState) => ({ population: state.fields.population })
+const ActionCreators = {
+  updateFields(data: IFields) {
+    return {
+      type: 'UPDATE_FIELDS',
+      data
+    }
+  }
+}
 
-const App: React.FC = () => {
+const App = () => {
+  const fields = useMapState((state: IState) => state.fields)
+  const actions = useActionCreators(ActionCreators)
+
   return (
     <div className="App">
-      <TownFields onSave={console.log} />
-
-      <State selector={selectPopulation} >
-        {(state) => {
-          return (
-            <div>population: { state.population }</div>
-          )
-        }}
-      </State>
+      <TownFields
+        onSave={actions.updateFields}
+        {...fields}
+      />
+      <div>population: {fields.population}</div>
     </div>
-  );
+  )
 }
 
 export default App;
