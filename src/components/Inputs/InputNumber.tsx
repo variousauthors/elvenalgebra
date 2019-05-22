@@ -5,6 +5,7 @@ interface IInputNumberProps {
   name: string
   value: number
 
+  readOnly?: boolean
   onChange?: (changeEvent: { [key: string]: number }) => void
 }
 
@@ -14,7 +15,7 @@ export const InputNumber = (props: IInputNumberProps) => {
   return (
     <div>
       <label htmlFor={name}>{name}</label>
-      <input value={value} name={name} type='number' onChange={onChange} />
+      <input value={value} name={name} type='number' onChange={onChange} readOnly />
     </div>
   )
 

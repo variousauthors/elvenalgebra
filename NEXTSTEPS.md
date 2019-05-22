@@ -1,8 +1,14 @@
 NEXTSTEPS
 =========
 
+# Workshop Efficiency
+ - [] fields for workshop stats
+ - [] add supplies field for event buildings
+ - [] include supplies in efficiency calculation
+
 # Create/Edit Event Buildings
+ - [] render efficiency of culture/pop building
  - [x] a reducer that has many event buildings
  - [x] a plus button that adds a new event building
  - [x] a component to render an editable event building
- - [] a component to render the efficiency score etc...
+ - [x] a component to render the efficiency score etc...

@@ -15,7 +15,7 @@ export const CultureFields = (props: ICultureFieldProps) => {
 
   return (
     <div>
-      <div>{'Roads'}</div>
+      <div>{'Culture'}</div>
 
       <InputNumber value={draft.culture} name='culture' onChange={update} />
       <InputNumber value={draft.width} name='width' onChange={update} />

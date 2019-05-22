@@ -33,7 +33,6 @@ const App = () => {
         {...cultureFields}
       />
       <EventBuildingsPanel />
-      <div>population: {townFields.population}</div>
     </div>
   )
 }
