@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { InputNumber } from '../Inputs/InputNumber'
 import { IRoadsFields } from '../../types/state';
 import { useDraft } from '../../hooks';
+import { Fieldset } from './components';
 
 interface IRoadFieldProps extends IRoadsFields {
   onSave: (fields: IRoadsFields) => void
@@ -14,12 +15,10 @@ export const RoadFields = (props: IRoadFieldProps) => {
   })
 
   return (
-    <div>
-      <div>{'Roads'}</div>
-
-      <InputNumber value={draft.culture} name='culture' onChange={update} />
-
-      <button onClick={publish}>Save</button>
-    </div>
+    <Fieldset name={'Roads'} onSave={publish}>
+      <Fragment>
+        <InputNumber value={draft.culture} name='culture' onChange={update} />
+      </Fragment>
+    </Fieldset>
   )
 }
