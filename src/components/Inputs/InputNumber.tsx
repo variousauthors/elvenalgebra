@@ -15,7 +15,7 @@ export const InputNumber = (props: IInputNumberProps) => {
   return (
     <div>
       <label htmlFor={name}>{name}</label>
-      <input value={value} name={name} type='number' onChange={onChange} readOnly />
+      <input value={value} name={name} type='number' onChange={onChange} readOnly={props.readOnly} />
     </div>
   )
 
