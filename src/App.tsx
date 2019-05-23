@@ -76,6 +76,14 @@ const DrawerContents = () => {
   )
 }
 
+const TitleTown = () => {
+  return <>Configure Your Town</>
+}
+
+const TitleEventBuildings = () => {
+  return <>Add Event Buildings</>
+}
+
 const App = () => {
   const classes = useStyles();
   const theme = useTheme<{ direction: any }>();
@@ -99,7 +107,11 @@ const App = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" noWrap>
-            Responsive drawer
+            <Switch>
+              <Route exact path="/" component={TitleTown} />
+              <Route path="/town" component={TitleTown} />
+              <Route path="/event-buildings" component={TitleEventBuildings} />
+            </Switch>
           </Typography>
         </Toolbar>
       </AppBar>
