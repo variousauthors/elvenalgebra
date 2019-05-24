@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { TownStatsPanel, EventBuildingsPanel } from './components';
+import { TownStatsPage, EventBuildingsPanel } from './components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Route, Switch } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
@@ -149,8 +149,8 @@ const App = () => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-          <Route exact path="/" component={TownStatsPanel} />
-          <Route path="/town" component={TownStatsPanel} />
+          <Route exact path="/" component={TownStatsPage} />
+          <Route path="/town" component={TownStatsPage} />
           <Route path="/event-buildings" component={EventBuildingsPanel} />
         </Switch>
       </main>

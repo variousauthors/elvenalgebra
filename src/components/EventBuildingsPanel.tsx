@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { EventBuildingFields } from "./Fields/EventBuildingFields";
+import { EventBuildingFields } from "./Fields";
 import { useActionCreators, useSelect } from "@epeli/redux-hooks";
 import { ActionCreators } from '../reducers';
 import { selectAllEventBuildings } from "../reducers/eventBuildingReducer";

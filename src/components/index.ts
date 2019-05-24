@@ -1,3 +1,3 @@
 export * from './BottomNavigation'
-export * from './TownStatsPanel'
+export * from './TownStatsPage'
 export * from './EventBuildingsPanel'
