@@ -1,6 +1,11 @@
 NEXTSTEPS
 =========
 
+# Styled Components
+
+Use the ThemeProvider from styled-components, and pass in the MuiTheme.
+Then we can use styled components and still have access to the MuiTheme
+
 # Data
  - [] scrape residence/workshop stats by race/level
 

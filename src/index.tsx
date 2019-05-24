@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { configureStore } from './__entry/configureStore'
 import { PersistGate } from 'redux-persist/integration/react';
-import {HooksProvider} from "@epeli/redux-hooks";
+import { HooksProvider } from "@epeli/redux-hooks";
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core';
