@@ -43,6 +43,7 @@ export interface IEventBuildingAttributes {
   height: number
   culture: number
   population: number
+  name: string
 }
 
 export interface IEventBuilding extends IEventBuildingAttributes {

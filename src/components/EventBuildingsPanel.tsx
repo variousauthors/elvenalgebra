@@ -31,7 +31,7 @@ export const EventBuildingsPanel = () => {
 
   const buildings = eventBuildings.map(eventBuilding => {
     return (
-      <Grid item xs key={eventBuilding.id}>
+      <Grid item xs={4} key={eventBuilding.id}>
         <Paper className={classes.paper}>
           <EventBuildingFields
             onSave={actions.updateEventBuilding}

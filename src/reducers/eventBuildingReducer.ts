@@ -10,7 +10,8 @@ const newEventBuilding: IEventBuildingAttributes = {
   culture: 0,
   width: 0,
   height: 0,
-  population: 0
+  population: 0,
+  name: ''
 }
 
 enum EventBuildingActions {

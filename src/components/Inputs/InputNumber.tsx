@@ -1,21 +1,27 @@
 import React from 'react';
 import { isNil } from "ramda";
+import { useUUID } from '../../hooks';
 
 interface IInputNumberProps {
-  name: string
+  label?: string
   value: number
 
+  /** deprecated */
+  name: string
   readOnly?: boolean
   onChange?: (changeEvent: { [key: string]: number }) => void
 }
 
 export const InputNumber = (props: IInputNumberProps) => {
-  const { name, value } = props
+  const { name, label, value } = props
+  const uuid = useUUID()
+
+  const labelText = isNil(label) ? name : label
 
   return (
     <div>
-      <label htmlFor={name}>{name}</label>
-      <input value={value} name={name} type='number' onChange={onChange} readOnly={props.readOnly} />
+      <label htmlFor={uuid}>{labelText}</label>
+      <input value={value} id={uuid} type='number' onChange={onChange} readOnly={props.readOnly} />
     </div>
   )
 

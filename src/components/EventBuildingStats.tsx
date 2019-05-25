@@ -14,8 +14,8 @@ export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
 
   return (
     <div>
-      <InputNumber value={totalArea} name='totalArea' readOnly />
-      <InputNumber value={efficiency} name='efficiency' readOnly />
+      <InputNumber value={totalArea} label='Effective Area' name='totalArea' readOnly />
+      <InputNumber value={efficiency} label='Efficiency' name='efficiency' readOnly />
     </div>
   )
 }
