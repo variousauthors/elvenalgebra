@@ -15,6 +15,7 @@
     "@types/react-redux": "^7.0.8",
     "@types/react-router-dom": "^4.3.3",
     "@types/redux-persist": "^4.3.1",
+    "@types/uuid": "^3.4.4",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -27,7 +28,8 @@
     "redux-hooks": "^0.1.5",
     "redux-persist": "^5.10.0",
     "typescript": "3.4.5",
-    "use-react-router": "^1.0.6"
+    "use-react-router": "^1.0.6",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
