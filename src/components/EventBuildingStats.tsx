@@ -5,10 +5,21 @@ import { useDerivedStats } from '../hooks';
 
 interface IEventBuildingStatsProps extends IEventBuilding { }
 
+function Identity <T>(x: T) {
+  return {
+    map: function <R>(f: (x: T) => R) {
+      return Identity(f(x))
+    },
+    reduce: function <R>(f: (acc: R, x: T) => R, initial: R) {
+      return [x].reduce(f, initial)
+    }
+  }
+}
+
 const useEffectiveArea = (props: IEventBuildingStatsProps) => {
   const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare, manaPerHrPerSquare } = useDerivedStats()
 
-  return [0]
+  return Identity(0)
     .map(x => x + (props.culture / culturePerSquare))
     .map(x => x + (props.population / popPerSquare))
     .map(x => x + (props.supply / supplyPer24HrPerSquare))

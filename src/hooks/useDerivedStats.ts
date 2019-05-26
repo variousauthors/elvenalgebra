@@ -1,5 +1,5 @@
 import { useSelect } from "@epeli/redux-hooks";
-import { IState, ICultureFields, IResidenceFields, IWorkshopFields } from '../types';
+import { IState } from '../types';
 
 
 const useCulturePerSquare = () => {
@@ -59,9 +59,9 @@ const selectFields = (state: IState) => {
 
 export const useDerivedStats = () => {
   const culturePerSquare = useCulturePerSquare()
+  const manaPerHrPerSquare = useManaPerHrPerSquare()
   const popPerSquare = usePopPerSquare()
   const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
-  const manaPerHrPerSquare = useManaPerHrPerSquare()
 
   return {
     culturePerSquare,
