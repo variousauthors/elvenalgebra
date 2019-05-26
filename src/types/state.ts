@@ -19,6 +19,16 @@ export interface IResidenceFields {
   culture: number
 }
 
+export interface IWorkshopFields {
+  count: number
+  width: number
+  height: number
+  population: number
+  culture: number
+  supply3Hr: number
+  supply9Hr: number
+}
+
 export interface ICultureFields {
   culture: number
   width: number
@@ -29,6 +39,7 @@ export interface IState {
   townFields: ITownFields
   roadFields: IRoadsFields
   residenceFields: IResidenceFields
+  workshopFields: IWorkshopFields
   cultureFields: ICultureFields
   eventBuildings: IEventBuildings
 }
