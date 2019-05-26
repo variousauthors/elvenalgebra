@@ -1,6 +1,13 @@
 NEXTSTEPS
 =========
 
+# Customize Event Building Info
+ - display grayed out mana/pop/supply/culture icons
+ - when the user clicks one, it colors and a field for that stat is added to the card
+ - this way the user can easily see (and filter by) which of the stats are included in a building
+ - if a symbol is gray, then regardless of whether the event in the store has a value for population,
+   by example, it will not include population in the calculation of effective area.
+
 # Styled Components
 
 Use the ThemeProvider from styled-components, and pass in the MuiTheme.

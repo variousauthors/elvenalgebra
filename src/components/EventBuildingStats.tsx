@@ -6,9 +6,14 @@ import { useDerivedStats } from '../hooks';
 interface IEventBuildingStatsProps extends IEventBuilding { }
 
 const useEffectiveArea = (props: IEventBuildingStatsProps) => {
-  const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare } = useDerivedStats()
+  const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare, manaPerHrPerSquare } = useDerivedStats()
 
-  return (props.culture / culturePerSquare) + (props.population / popPerSquare) + (props.supply / supplyPer24HrPerSquare)
+  return [0]
+    .map(x => x + (props.culture / culturePerSquare))
+    .map(x => x + (props.population / popPerSquare))
+    .map(x => x + (props.supply / supplyPer24HrPerSquare))
+    .map(x => x + (props.mana / manaPerHrPerSquare))
+    .reduce((_, x) => x, 0)
 }
 
 export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
