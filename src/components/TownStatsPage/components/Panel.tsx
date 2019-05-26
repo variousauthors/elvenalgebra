@@ -26,7 +26,7 @@ export const usePanelStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   column: {
-    flexBasis: '20%',
+    flexBasis: '25%',
   },
 }));
 

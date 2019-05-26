@@ -5,16 +5,20 @@ import { useDerivedStats } from '../hooks';
 
 interface IEventBuildingStatsProps extends IEventBuilding { }
 
-export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
-  const { popPerSquare, culturePerSquare } = useDerivedStats()
+const useEffectiveArea = (props: IEventBuildingStatsProps) => {
+  const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare } = useDerivedStats()
 
+  return (props.culture / culturePerSquare) + (props.population / popPerSquare) + (props.supply / supplyPer24HrPerSquare)
+}
+
+export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
+  const effectiveArea = useEffectiveArea(props)
   const area = props.width * props.height
-  const totalArea = (props.culture / culturePerSquare) + (props.population / popPerSquare)
-  const efficiency = (area > 0) ? totalArea / area : 0
+  const efficiency = (area > 0) ? effectiveArea / area : 0
 
   return (
     <div>
-      <InputNumber value={totalArea} label='Effective Area' name='totalArea' readOnly />
+      <InputNumber value={effectiveArea} label='Effective Area' name='totalArea' readOnly />
       <InputNumber value={efficiency} label='Efficiency' name='efficiency' readOnly />
     </div>
   )

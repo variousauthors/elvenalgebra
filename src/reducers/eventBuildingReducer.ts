@@ -11,6 +11,7 @@ const newEventBuilding: IEventBuildingAttributes = {
   width: 0,
   height: 0,
   population: 0,
+  supply: 0,
   name: ''
 }
 

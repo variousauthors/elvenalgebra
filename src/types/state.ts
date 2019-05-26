@@ -57,6 +57,7 @@ export interface IEventBuildingAttributes {
   height: number
   culture: number
   population: number
+  supply: number
   name: string
 }
 
