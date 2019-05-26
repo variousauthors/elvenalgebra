@@ -1,6 +1,7 @@
 import { IWorkshopFields } from "../types/state";
 
 const initialState: IWorkshopFields = {
+  level: 1,
   culture: 0,
   width: 0,
   height: 0,

@@ -19,8 +19,14 @@ export const WorkshopPanel = () => {
   const { supplyPer24HrPerSquare } = useDerivedStats()
 
   return (
-    <Panel label={'Workshop'} value={`Daily Supply/Square: ${Math.round(supplyPer24HrPerSquare)}`} onSaveClicked={publish}>
+    <Panel
+      label={'Workshop'}
+      hint={`Level: ${draft.level.toString()}`}
+      summary={`Daily Supply/Square: ${Math.round(supplyPer24HrPerSquare)}`}
+      onSaveClicked={publish}
+    >
       <>
+        <InputNumber value={draft.level} label='Level' name='level' onChange={update} />
         <InputNumber value={draft.population} label='Population' name='population' onChange={update} />
         <InputNumber value={draft.culture} label='Culture' name='culture' onChange={update} />
         <InputNumber value={draft.supply3Hr} label='3 HR' name='supply3Hr' onChange={update} />

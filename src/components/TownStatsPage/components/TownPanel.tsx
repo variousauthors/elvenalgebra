@@ -17,7 +17,7 @@ export const TownPanel = () => {
   })
 
   return (
-    <Panel label={'Town'} value={'Ol\' Town'} onSaveClicked={publish}>
+    <Panel label={'Town'} summary={'Ol\' Town'} onSaveClicked={publish}>
       <>
         <InputNumber value={draft.population} name='population' onChange={update} />
         <InputNumber value={draft.workingPopulation} name='workingPopulation' onChange={update} />

@@ -17,7 +17,7 @@ export const RoadPanel = () => {
   })
 
   return (
-    <Panel label={'Roads'} value={''} onSaveClicked={publish}>
+    <Panel label={'Roads'} summary={''} onSaveClicked={publish}>
       <>
         <InputNumber value={draft.culture} name='culture' onChange={update} />
       </>

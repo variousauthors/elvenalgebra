@@ -19,8 +19,14 @@ export const ResidencePanel = () => {
   const { popPerSquare } = useDerivedStats()
 
   return (
-    <Panel label={'Residence'} value={`Population/Square: ${Math.round(popPerSquare)}`} onSaveClicked={publish}>
+    <Panel
+      label={'Residence'}
+      hint={`Level: ${draft.level.toString()}`}
+      summary={`Population/Square: ${Math.round(popPerSquare)}`}
+      onSaveClicked={publish}
+    >
       <>
+        <InputNumber value={draft.level} label='Level' name='level' onChange={update} />
         <InputNumber value={draft.culture} name='culture' onChange={update} />
         <InputNumber value={draft.width} name='width' onChange={update} />
         <InputNumber value={draft.height} name='height' onChange={update} />

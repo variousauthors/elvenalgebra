@@ -1,6 +1,7 @@
 import { IResidenceFields } from "../types/state";
 
 const initialState: IResidenceFields = {
+  level: 1,
   culture: 0,
   width: 0,
   height: 0,

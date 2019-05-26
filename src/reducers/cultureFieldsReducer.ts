@@ -1,6 +1,7 @@
 import { ICultureFields } from "../types/state";
 
 const initialState: ICultureFields = {
+  name: '',
   culture: 0,
   width: 0,
   height: 0,

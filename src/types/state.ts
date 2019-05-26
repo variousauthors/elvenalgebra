@@ -17,6 +17,7 @@ export interface IResidenceFields {
   height: number
   population: number
   culture: number
+  level: number
 }
 
 export interface IWorkshopFields {
@@ -27,9 +28,11 @@ export interface IWorkshopFields {
   culture: number
   supply3Hr: number
   supply9Hr: number
+  level: number
 }
 
 export interface ICultureFields {
+  name: string
   culture: number
   width: number
   height: number
