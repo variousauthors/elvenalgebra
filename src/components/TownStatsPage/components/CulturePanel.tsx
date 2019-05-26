@@ -3,7 +3,7 @@ import React from 'react';
 import { ActionCreators } from '../../../reducers';
 import { IState, ICultureFields } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
-import { useDraft } from '../../../hooks';
+import { useDraft, useDerivedStats } from '../../../hooks';
 import { InputNumber } from '../../Inputs/InputNumber';
 import { Panel } from './Panel'
 
@@ -16,8 +16,10 @@ export const CulturePanel = () => {
     onPublish: actions.updateCultureFields
   })
 
+  const { culturePerSquare } = useDerivedStats()
+
   return (
-    <Panel label={'Culture'} value={'Weeping Willows'} onSaveClicked={publish}>
+    <Panel label={'Culture'} value={`Culture/Square: ${culturePerSquare}`} onSaveClicked={publish}>
       <>
         <InputNumber value={draft.culture} name='culture' onChange={update} />
         <InputNumber value={draft.width} name='width' onChange={update} />

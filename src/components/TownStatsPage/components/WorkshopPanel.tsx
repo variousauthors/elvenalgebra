@@ -3,7 +3,7 @@ import React from 'react';
 import { ActionCreators } from '../../../reducers';
 import { IState, IWorkshopFields } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
-import { useDraft } from '../../../hooks';
+import { useDraft, useDerivedStats } from '../../../hooks';
 import { InputNumber } from '../../Inputs/InputNumber';
 import { Panel } from './Panel'
 
@@ -16,8 +16,10 @@ export const WorkshopPanel = () => {
     onPublish: actions.updateWorkshopFields
   })
 
+  const { supplyPer24HrPerSquare } = useDerivedStats()
+
   return (
-    <Panel label={'Workshop'} value={'level 1'} onSaveClicked={publish}>
+    <Panel label={'Workshop'} value={`Daily Supply/Square: ${Math.round(supplyPer24HrPerSquare)}`} onSaveClicked={publish}>
       <>
         <InputNumber value={draft.population} label='Population' name='population' onChange={update} />
         <InputNumber value={draft.culture} label='Culture' name='culture' onChange={update} />
