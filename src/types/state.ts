@@ -38,12 +38,21 @@ export interface ICultureFields {
   height: number
 }
 
+export interface IManaFields {
+  name: string
+  mana1Hr: number
+  width: number
+  height: number
+}
+
 export interface IState {
   townFields: ITownFields
   roadFields: IRoadsFields
   residenceFields: IResidenceFields
   workshopFields: IWorkshopFields
   cultureFields: ICultureFields
+  manaFields: IManaFields
+
   eventBuildings: IEventBuildings
 }
 

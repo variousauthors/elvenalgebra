@@ -8,6 +8,12 @@ const useCulturePerSquare = () => {
   return cultureFields.culture / (cultureFields.width * cultureFields.height)
 }
 
+const useManaPerHrPerSquare = () => {
+  const { manaFields } = useSelect(selectFields)
+
+  return manaFields.mana1Hr / (manaFields.width * manaFields.height)
+}
+
 const usePopPerSquare = () => {
   const culturePerSquare = useCulturePerSquare()
   const { residenceFields, roadFields} = useSelect(selectFields)
@@ -47,6 +53,7 @@ const selectFields = (state: IState) => {
     roadFields: state.roadFields,
     workshopFields: state.workshopFields,
     townFields: state.townFields,
+    manaFields: state.manaFields,
   })
 }
 
@@ -54,10 +61,12 @@ export const useDerivedStats = () => {
   const culturePerSquare = useCulturePerSquare()
   const popPerSquare = usePopPerSquare()
   const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
+  const manaPerHrPerSquare = useManaPerHrPerSquare()
 
   return {
     culturePerSquare,
     popPerSquare,
     supplyPer24HrPerSquare,
+    manaPerHrPerSquare,
   }
 }
