@@ -17,13 +17,12 @@ function Identity <T>(x: T) {
 }
 
 const useEffectiveArea = (props: IEventBuildingStatsProps) => {
-  const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare, manaPerHrPerSquare } = useDerivedStats()
+  const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare } = useDerivedStats()
 
   return Identity(0)
     .map(x => x + (props.culture / culturePerSquare))
     .map(x => x + (props.population / popPerSquare))
     .map(x => x + (props.supply / supplyPer24HrPerSquare))
-    .map(x => x + (props.mana / manaPerHrPerSquare))
     .reduce((_, x) => x, 0)
 }
 

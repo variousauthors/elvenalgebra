@@ -33,7 +33,7 @@ export const usePanelStyles = makeStyles(theme => ({
 interface IPanelProps {
   onSaveClicked: () => void
   hint?: string
-  summary: string
+  summary?: string
   label: string
   defaultExpanded?: boolean
   children: JSX.Element

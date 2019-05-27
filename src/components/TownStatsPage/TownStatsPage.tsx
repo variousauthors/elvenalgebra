@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { CulturePanel, ResidencePanel, RoadPanel, TownPanel, WorkshopPanel, ManaPanel } from './components'
+import { CulturePanel, ResidencePanel, RoadPanel, TownPanel, WorkshopPanel, PlaystylePanel } from './components'
 
 const useStyles = makeStyles({
   root: {
@@ -15,9 +15,9 @@ export function TownStatsPage() {
   return (
     <div className={classes.root}>
       <TownPanel />
+      <PlaystylePanel />
       <RoadPanel />
       <CulturePanel />
-      <ManaPanel />
       <ResidencePanel />
       <WorkshopPanel />
     </div>
