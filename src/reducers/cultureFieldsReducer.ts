@@ -1,4 +1,5 @@
-import { ICultureFields } from "../types/state";
+import { ICultureFields } from '../types/state';
+import { makeFieldsReducer } from './helpers';
 
 const initialState: ICultureFields = {
   name: '',
@@ -7,35 +8,7 @@ const initialState: ICultureFields = {
   height: 0,
 }
 
-enum CultureFieldsActions {
-  UPDATE_CULTURE_FIELDS = 'UPDATE_CULTURE_FIELDS'
-}
+const { update, reducer } = makeFieldsReducer(initialState, { update: 'UPDATE_CULTURE_FIELDS' })
 
-interface IAction<T, K> {
-  type: T,
-  data: K
-}
-
-interface ICultureFieldsAction extends IAction<CultureFieldsActions, ICultureFields> {}
-
-export const updateCultureFields = (data: ICultureFields): ICultureFieldsAction => {
-  return {
-    type: CultureFieldsActions.UPDATE_CULTURE_FIELDS,
-    data
-  }
-}
-
-export const cultureFields = (state: ICultureFields = initialState, action: ICultureFieldsAction): ICultureFields => {
-
-  switch (action.type) {
-    case CultureFieldsActions.UPDATE_CULTURE_FIELDS: {
-      return {
-        ...state,
-        ...action.data
-      }
-    }
-    default: {
-      return state
-    }
-  }
-}
+export const updateCultureFields = update
+export const cultureFields = reducer

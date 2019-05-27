@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ActionCreators } from '../../../reducers';
-import { IState, ICultureFields } from '../../../types';
+import { IState } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
 import { InputNumber } from '../../Inputs/InputNumber';
@@ -10,10 +10,10 @@ import { InputText } from '../../Inputs';
 
 export const CulturePanel = () => {
   const actions = useActionCreators(ActionCreators)
-  const cultureFields = useMapState((state: IState) => state.cultureFields)
+  const fields = useMapState((state: IState) => state.cultureFields)
 
-  const { draft, update, publish } = useDraft<ICultureFields>({
-    ...cultureFields,
+  const { draft, update, publish } = useDraft({
+    ...fields,
     onPublish: actions.updateCultureFields
   })
 
