@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { CulturePanel, ResidencePanel, TownPanel, WorkshopPanel, PlaystylePanel } from './components'
+import { CulturePanel, ResidencePanel, TownPanel, WorkshopPanel, PlaystylePanel, MainHallPanel } from './components'
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +17,7 @@ export function TownStatsPage() {
       <TownPanel />
       <PlaystylePanel />
       <CulturePanel />
+      <MainHallPanel />
       <ResidencePanel />
       <WorkshopPanel />
     </div>

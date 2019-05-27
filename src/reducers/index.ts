@@ -4,6 +4,7 @@ import { updateCultureFields } from './cultureFieldsReducer'
 import { updateWorkshopFields } from './workshopFieldsReducer'
 import { updateManaFields } from './manaFieldsReducer'
 import { updatePlaystyleFields } from './playstyleFieldsReducer'
+import { updateMainHallFields } from './mainHallFieldsReducer'
 
 import { updateEventBuilding, addEventBuilding, deleteEventBuilding } from './eventBuildingReducer'
 
@@ -13,6 +14,7 @@ export { cultureFields } from './cultureFieldsReducer'
 export { workshopFields } from './workshopFieldsReducer'
 export { manaFields } from './manaFieldsReducer'
 export { playstyleFields } from './playstyleFieldsReducer'
+export { mainHallFields } from './mainHallFieldsReducer'
 
 export { eventBuildingsReducer as eventBuildings } from './eventBuildingReducer'
 
@@ -24,6 +26,7 @@ export const ActionCreators = {
   updateWorkshopFields,
   updateManaFields,
   updatePlaystyleFields,
+  updateMainHallFields,
   addEventBuilding,
-  deleteEventBuilding
+  deleteEventBuilding,
 }

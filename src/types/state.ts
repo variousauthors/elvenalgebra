@@ -45,6 +45,15 @@ export interface IPlaystyleFields {
   daily9HrCollections: number,
 }
 
+export interface IMainHallFields {
+  level: number
+  width: number
+  height: number
+  population: number
+  culture: number
+  supplyCapacity: number
+}
+
 export interface IState {
   townFields: ITownFields
   residenceFields: IResidenceFields
@@ -52,6 +61,7 @@ export interface IState {
   cultureFields: ICultureFields
   manaFields: IManaFields
   playstyleFields: IPlaystyleFields
+  mainHallFields: IMainHallFields
 
   eventBuildings: IEventBuildings
 }
