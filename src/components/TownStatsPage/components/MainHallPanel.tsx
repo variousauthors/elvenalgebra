@@ -20,7 +20,7 @@ export const MainHallPanel = () => {
     <Panel
       label={'Main Hall'}
       hint={`Level: ${draft.level}`}
-      summary={`Supply Cap: ${1}`}
+      summary={`Supply Cap: ${draft.supplyCapacity}`}
       onSaveClicked={publish}
     >
       <>

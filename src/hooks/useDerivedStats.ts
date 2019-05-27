@@ -31,12 +31,14 @@ const usePopPerSquare = () => {
 const useSuppliesPerSquare24Hr = () => {
   const culturePerSquare = useCulturePerSquare()
   const popPerSquare = usePopPerSquare()
-  const { workshopFields, townFields, playstyleFields } = useSelect(selectFields)
+  const { workshopFields, townFields, playstyleFields, goldenAbyssFields } = useSelect(selectFields)
+
+  const workshopPopulation = workshopFields.population - (workshopFields.population * goldenAbyssFields.percent/100)
 
   const roadSquares = Math.min(workshopFields.width, workshopFields.height)
   const cultureCost = workshopFields.culture - (roadSquares * townFields.roadsCulture)
   const cultureSquares = cultureCost / culturePerSquare
-  const residenceSquares = workshopFields.population / popPerSquare
+  const residenceSquares = workshopPopulation / popPerSquare
   const area = workshopFields.width * workshopFields.height
   const effectiveArea = area + roadSquares + cultureSquares + residenceSquares
 
