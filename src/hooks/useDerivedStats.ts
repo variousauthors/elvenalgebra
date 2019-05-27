@@ -46,6 +46,12 @@ const useSuppliesPerSquare24Hr = () => {
   return supplyPer24HrPerSquare
 }
 
+const useGoldenAbyssPopulation = () => {
+  const { townFields, goldenAbyssFields } = useSelect(selectFields)
+
+  return townFields.workingPopulation * goldenAbyssFields.percent/100
+}
+
 const selectFields = (state: IState) => {
   return ({
     cultureFields: state.cultureFields,
@@ -54,19 +60,16 @@ const selectFields = (state: IState) => {
     townFields: state.townFields,
     manaFields: state.manaFields,
     playstyleFields: state.playstyleFields,
+    goldenAbyssFields: state.goldenAbyssFields,
   })
 }
 
 export const useDerivedStats = () => {
-  const culturePerSquare = useCulturePerSquare()
-  const manaPerHrPerSquare = useManaPerHrPerSquare()
-  const popPerSquare = usePopPerSquare()
-  const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
-
   return {
-    culturePerSquare,
-    popPerSquare,
-    supplyPer24HrPerSquare,
-    manaPerHrPerSquare,
+    culturePerSquare: useCulturePerSquare(),
+    popPerSquare: usePopPerSquare(),
+    supplyPer24HrPerSquare: useSuppliesPerSquare24Hr(),
+    manaPerHrPerSquare: useManaPerHrPerSquare(),
+    goldenAbyssBonusPopulation: useGoldenAbyssPopulation()
   }
 }

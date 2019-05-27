@@ -8,6 +8,8 @@ interface IInputNumberProps {
 
   /** deprecated */
   name: string
+
+  step?: string
   readOnly?: boolean
   onChange?: (changeEvent: { [key: string]: number }) => void
 }
@@ -17,11 +19,19 @@ export const InputNumber = (props: IInputNumberProps) => {
   const uuid = useUUID()
 
   const labelText = isNil(label) ? name : label
+  const step = isNil(props.step) ? '1' : '.01'
 
   return (
     <div>
       <label htmlFor={uuid}>{labelText}</label>
-      <input value={value} id={uuid} type='number' onChange={onChange} readOnly={props.readOnly} />
+      <input
+        value={value}
+        id={uuid}
+        type='number'
+        onChange={onChange}
+        readOnly={props.readOnly}
+        step={step}
+      />
     </div>
   )
 
@@ -29,7 +39,7 @@ export const InputNumber = (props: IInputNumberProps) => {
     if (isNil(props.onChange)) return
 
     props.onChange({
-      [props.name]: parseInt(e.target.value)
+      [props.name]: parseFloat(e.target.value)
     })
   }
 }

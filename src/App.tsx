@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { TownStatsPage, EventBuildingsPanel } from './components';
+import { TownStatsPage, EventBuildingsPanel, AncientWondersPage } from './components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Route, Switch } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
@@ -67,6 +67,10 @@ const DrawerContents = () => {
           <ListItemIcon><InboxIcon /></ListItemIcon>
           <ListItemText primary={'Town'} />
         </ListItem>
+        <ListItem button key={'Ancient Wonders'} onClick={() => history.push('ancient-wonders')}>
+          <ListItemIcon><MailIcon /></ListItemIcon>
+          <ListItemText primary={'Ancient Wonders'} />
+        </ListItem>
         <ListItem button key={'Event Buildings'} onClick={() => history.push('event-buildings')}>
           <ListItemIcon><MailIcon /></ListItemIcon>
           <ListItemText primary={'Event Buildings'} />
@@ -82,6 +86,10 @@ const TitleTown = () => {
 
 const TitleEventBuildings = () => {
   return <>Add Event Buildings</>
+}
+
+const TitleAncientWonders = () => {
+  return <>Configure Your Ancient Wonders</>
 }
 
 const App = () => {
@@ -111,6 +119,7 @@ const App = () => {
               <Route exact path="/" component={TitleTown} />
               <Route path="/town" component={TitleTown} />
               <Route path="/event-buildings" component={TitleEventBuildings} />
+              <Route path="/ancient-wonders" component={TitleAncientWonders} />
             </Switch>
           </Typography>
         </Toolbar>
@@ -152,6 +161,7 @@ const App = () => {
           <Route exact path="/" component={TownStatsPage} />
           <Route path="/town" component={TownStatsPage} />
           <Route path="/event-buildings" component={EventBuildingsPanel} />
+          <Route path="/ancient-wonders" component={AncientWondersPage} />
         </Switch>
       </main>
     </div>

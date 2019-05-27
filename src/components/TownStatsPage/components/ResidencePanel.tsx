@@ -5,7 +5,7 @@ import { IState, IResidenceFields } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
 import { InputNumber } from '../../Inputs/InputNumber';
-import { Panel } from './Panel'
+import { Panel } from '../../../layouts/Panel'
 
 export const ResidencePanel = () => {
   const actions = useActionCreators(ActionCreators)

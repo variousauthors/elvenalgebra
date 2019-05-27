@@ -5,6 +5,7 @@ import { updateWorkshopFields } from './workshopFieldsReducer'
 import { updateManaFields } from './manaFieldsReducer'
 import { updatePlaystyleFields } from './playstyleFieldsReducer'
 import { updateMainHallFields } from './mainHallFieldsReducer'
+import { updateGoldenAbyssFields } from './goldenAbyssFieldsReducer'
 
 import { updateEventBuilding, addEventBuilding, deleteEventBuilding } from './eventBuildingReducer'
 
@@ -15,6 +16,7 @@ export { workshopFields } from './workshopFieldsReducer'
 export { manaFields } from './manaFieldsReducer'
 export { playstyleFields } from './playstyleFieldsReducer'
 export { mainHallFields } from './mainHallFieldsReducer'
+export { goldenAbyssFields } from './goldenAbyssFieldsReducer'
 
 export { eventBuildingsReducer as eventBuildings } from './eventBuildingReducer'
 
@@ -27,6 +29,7 @@ export const ActionCreators = {
   updateManaFields,
   updatePlaystyleFields,
   updateMainHallFields,
+  updateGoldenAbyssFields,
   addEventBuilding,
   deleteEventBuilding,
 }

@@ -54,6 +54,12 @@ export interface IMainHallFields {
   supplyCapacity: number
 }
 
+export interface IGoldenAbyssFields {
+  level: number
+  area: 9
+  percent: number
+}
+
 export interface IState {
   townFields: ITownFields
   residenceFields: IResidenceFields
@@ -62,6 +68,7 @@ export interface IState {
   manaFields: IManaFields
   playstyleFields: IPlaystyleFields
   mainHallFields: IMainHallFields
+  goldenAbyssFields: IGoldenAbyssFields
 
   eventBuildings: IEventBuildings
 }

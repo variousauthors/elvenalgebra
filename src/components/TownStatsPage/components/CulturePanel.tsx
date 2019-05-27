@@ -5,7 +5,7 @@ import { IState } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
 import { InputNumber } from '../../Inputs/InputNumber';
-import { Panel } from './Panel'
+import { Panel } from '../../../layouts/Panel'
 import { InputText } from '../../Inputs';
 
 export const CulturePanel = () => {
