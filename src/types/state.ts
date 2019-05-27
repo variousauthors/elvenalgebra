@@ -1,12 +1,9 @@
 import { Action } from "redux";
 
 export interface ITownFields {
-  population: number,
-  workingPopulation: number,
-}
-
-export interface IRoadsFields {
-  culture: number,
+  population: number
+  workingPopulation: number
+  roadsCulture: number
 }
 
 export interface IResidenceFields {
@@ -50,7 +47,6 @@ export interface IPlaystyleFields {
 
 export interface IState {
   townFields: ITownFields
-  roadFields: IRoadsFields
   residenceFields: IResidenceFields
   workshopFields: IWorkshopFields
   cultureFields: ICultureFields

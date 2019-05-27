@@ -6,7 +6,6 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 import { IState, IAnyAction } from '../types/state';
 import {
   townFields,
-  roadFields,
   cultureFields,
   residenceFields,
   eventBuildings,
@@ -22,7 +21,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers<IState, IAnyAction>({
   townFields,
-  roadFields,
   residenceFields,
   workshopFields,
   cultureFields,

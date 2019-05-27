@@ -1,6 +1,5 @@
 export * from './CulturePanel'
 export * from './ResidencePanel'
-export * from './RoadPanel'
 export * from './TownPanel'
 export * from './WorkshopPanel'
 export * from './ManaPanel'

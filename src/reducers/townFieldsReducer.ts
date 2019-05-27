@@ -4,6 +4,7 @@ import { Action } from "redux";
 const initialState: ITownFields = {
   population: 0,
   workingPopulation: 0,
+  roadsCulture: 0,
 }
 
 enum TownFieldsActions {

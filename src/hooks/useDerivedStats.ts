@@ -16,10 +16,10 @@ const useManaPerHrPerSquare = () => {
 
 const usePopPerSquare = () => {
   const culturePerSquare = useCulturePerSquare()
-  const { residenceFields, roadFields} = useSelect(selectFields)
+  const { residenceFields, townFields } = useSelect(selectFields)
 
   const roadSquares = Math.min(residenceFields.width, residenceFields.height)
-  const cultureCost = residenceFields.culture - (roadSquares * roadFields.culture)
+  const cultureCost = residenceFields.culture - (roadSquares * townFields.roadsCulture)
   const cultureSquares = cultureCost / culturePerSquare
   const area = residenceFields.width * residenceFields.height
   const effectiveArea = area + roadSquares + cultureSquares
@@ -31,10 +31,10 @@ const usePopPerSquare = () => {
 const useSuppliesPerSquare24Hr = () => {
   const culturePerSquare = useCulturePerSquare()
   const popPerSquare = usePopPerSquare()
-  const { roadFields, workshopFields, townFields, playstyleFields } = useSelect(selectFields)
+  const { workshopFields, townFields, playstyleFields } = useSelect(selectFields)
 
   const roadSquares = Math.min(workshopFields.width, workshopFields.height)
-  const cultureCost = workshopFields.culture - (roadSquares * roadFields.culture)
+  const cultureCost = workshopFields.culture - (roadSquares * townFields.roadsCulture)
   const cultureSquares = cultureCost / culturePerSquare
   const residenceSquares = workshopFields.population / popPerSquare
   const area = workshopFields.width * workshopFields.height
@@ -50,7 +50,6 @@ const selectFields = (state: IState) => {
   return ({
     cultureFields: state.cultureFields,
     residenceFields: state.residenceFields,
-    roadFields: state.roadFields,
     workshopFields: state.workshopFields,
     townFields: state.townFields,
     manaFields: state.manaFields,

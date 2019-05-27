@@ -21,6 +21,7 @@ export const TownPanel = () => {
       <>
         <InputNumber value={draft.population} name='population' onChange={update} />
         <InputNumber value={draft.workingPopulation} name='workingPopulation' onChange={update} />
+        <InputNumber value={draft.roadsCulture} label='Roads' name='roadsCulture' onChange={update} />
       </>
     </Panel>
   )
