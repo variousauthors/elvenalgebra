@@ -70,6 +70,17 @@ const useProsperityTowersEfficiency = () => {
   return efficiency
 }
 
+const useEndlessExcavationEfficiency = () => {
+  const { mainHallFields, endlessExcavationFields } = useSelect(selectFields)
+  const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
+
+  const supply24Hr = mainHallFields.supplyCapacity * endlessExcavationFields.percent
+  const effectiveArea = supply24Hr / supplyPer24HrPerSquare
+  const efficiency = effectiveArea / endlessExcavationFields.area
+
+  return efficiency
+}
+
 const selectFields = (state: IState) => {
   return ({
     cultureFields: state.cultureFields,
@@ -81,6 +92,7 @@ const selectFields = (state: IState) => {
     playstyleFields: state.playstyleFields,
     goldenAbyssFields: state.goldenAbyssFields,
     prosperityTowersFields: state.prosperityTowersFields,
+    endlessExcavationFields: state.endlessExcavationFields,
   })
 }
 
@@ -92,5 +104,6 @@ export const useDerivedStats = () => {
     manaPerHrPerSquare: useManaPerHrPerSquare(),
     goldenAbyssEfficiency: useGoldenAbyssEfficiency(),
     prosperityTowersEfficiency: useProsperityTowersEfficiency(),
+    endlessExcavationEfficiency: useEndlessExcavationEfficiency(),
   }
 }

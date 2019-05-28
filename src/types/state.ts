@@ -66,6 +66,12 @@ export interface IProsperityTowersFields {
   percent: number
 }
 
+export interface IEndlessExcavationFields {
+  level: number
+  area: 20
+  percent: number
+}
+
 export interface IState {
   townFields: ITownFields
   residenceFields: IResidenceFields
@@ -77,6 +83,7 @@ export interface IState {
 
   goldenAbyssFields: IGoldenAbyssFields
   prosperityTowersFields: IProsperityTowersFields
+  endlessExcavationFields: IEndlessExcavationFields
 
   eventBuildings: IEventBuildings
 }

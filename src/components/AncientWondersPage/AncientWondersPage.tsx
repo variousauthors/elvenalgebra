@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { GoldenAbyssPanel, ProsperityTowersPanel } from './components';
+import { GoldenAbyssPanel, ProsperityTowersPanel, EndlessExcavationPanel } from './components';
 
 const useStyles = makeStyles({
   root: {
@@ -16,6 +16,7 @@ export function AncientWondersPage() {
     <div className={classes.root}>
       <GoldenAbyssPanel/>
       <ProsperityTowersPanel/>
+      <EndlessExcavationPanel/>
     </div>
   );
 }
