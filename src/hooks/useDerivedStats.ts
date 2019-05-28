@@ -48,10 +48,15 @@ const useSuppliesPerSquare24Hr = () => {
   return supplyPer24HrPerSquare
 }
 
-const useGoldenAbyssPopulation = () => {
+const useGoldenAbyssEfficiency = () => {
   const { townFields, goldenAbyssFields } = useSelect(selectFields)
+  const popPerSquare = usePopPerSquare()
 
-  return townFields.workingPopulation * goldenAbyssFields.percent
+  const population = townFields.workingPopulation * goldenAbyssFields.percent
+  const effectiveArea = population / popPerSquare
+  const efficiency = effectiveArea / goldenAbyssFields.area
+
+  return efficiency
 }
 
 const selectFields = (state: IState) => {
@@ -72,6 +77,6 @@ export const useDerivedStats = () => {
     popPerSquare: usePopPerSquare(),
     supplyPer24HrPerSquare: useSuppliesPerSquare24Hr(),
     manaPerHrPerSquare: useManaPerHrPerSquare(),
-    goldenAbyssBonusPopulation: useGoldenAbyssPopulation()
+    goldenAbyssEfficiency: useGoldenAbyssEfficiency()
   }
 }

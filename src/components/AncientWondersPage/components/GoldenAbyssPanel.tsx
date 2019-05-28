@@ -16,13 +16,13 @@ export const GoldenAbyssPanel = () => {
     onPublish: actions.updateGoldenAbyssFields
   })
 
-  const { goldenAbyssBonusPopulation } = useDerivedStats()
+  const { goldenAbyssEfficiency } = useDerivedStats()
 
   return (
     <Panel
       label={'Golden Abyss'}
       hint={`Level: ${draft.level}`}
-      summary={`Bonus Population: ${Math.round(goldenAbyssBonusPopulation)}`}
+      summary={`Efficiency: ${goldenAbyssEfficiency}`}
       onSaveClicked={publish}
     >
       <>
