@@ -1,4 +1,4 @@
-import { IPlaystyleFields } from "../types/state";
+import { IPlaystyleFields } from "../../types/state";
 import { Action } from "redux";
 
 const initialState: IPlaystyleFields = {

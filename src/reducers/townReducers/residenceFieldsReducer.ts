@@ -1,4 +1,4 @@
-import { IResidenceFields } from "../types/state";
+import { IResidenceFields } from "../../types/state";
 
 const initialState: IResidenceFields = {
   level: 1,

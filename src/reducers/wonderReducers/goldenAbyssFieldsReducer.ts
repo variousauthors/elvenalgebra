@@ -1,5 +1,5 @@
-import { IGoldenAbyssFields } from '../types/state';
-import { makeFieldsReducer } from './helpers';
+import { IGoldenAbyssFields } from '../../types/state';
+import { makeFieldsReducer } from '../helpers';
 
 const initialState: IGoldenAbyssFields = {
   level: 0,

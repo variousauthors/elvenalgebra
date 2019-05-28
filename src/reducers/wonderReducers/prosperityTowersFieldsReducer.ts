@@ -1,5 +1,5 @@
-import { IProsperityTowersFields } from '../types/state';
-import { makeFieldsReducer } from './helpers';
+import { IProsperityTowersFields } from '../../types/state';
+import { makeFieldsReducer } from '../helpers';
 
 const initialState: IProsperityTowersFields = {
   level: 0,

@@ -1,5 +1,5 @@
-import { ICultureFields } from '../types/state';
-import { makeFieldsReducer } from './helpers';
+import { ICultureFields } from '../../types/state';
+import { makeFieldsReducer } from '../helpers';
 
 const initialState: ICultureFields = {
   name: '',

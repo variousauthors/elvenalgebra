@@ -1,5 +1,5 @@
-import { IMainHallFields } from '../types/state';
-import { makeFieldsReducer } from './helpers';
+import { IMainHallFields } from '../../types/state';
+import { makeFieldsReducer } from '../helpers';
 
 const initialState: IMainHallFields = {
   level: 0,

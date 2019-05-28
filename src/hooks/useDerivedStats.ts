@@ -59,7 +59,7 @@ const useGoldenAbyssEfficiency = () => {
 }
 
 const useProsperityTowersEfficiency = () => {
-  const { playstyleFields, mainHallFields, prosperityTowersFields, workshopFields } = useSelect(selectFields)
+  const { playstyleFields, mainHallFields, prosperityTowersFields } = useSelect(selectFields)
   const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
 
   const supply3Hr = mainHallFields.supplyCapacity * prosperityTowersFields.percent

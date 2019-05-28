@@ -1,4 +1,4 @@
-import { IWorkshopFields } from "../types/state";
+import { IWorkshopFields } from "../../types/state";
 
 const initialState: IWorkshopFields = {
   level: 1,

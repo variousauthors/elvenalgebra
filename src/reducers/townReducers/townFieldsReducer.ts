@@ -1,4 +1,4 @@
-import { ITownFields } from "../types/state";
+import { ITownFields } from "../../types/state";
 import { Action } from "redux";
 
 const initialState: ITownFields = {

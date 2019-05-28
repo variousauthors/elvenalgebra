@@ -1,4 +1,4 @@
-import { IManaFields } from '../types'
+import { IManaFields } from '../../types'
 
 const initialState: IManaFields = {
   name: '',
