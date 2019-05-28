@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputNumber, InputText } from '../Inputs'
+import { InputInteger, InputText } from '../Inputs'
 import { IEventBuilding } from '../../types'
 import { useDraft } from '../../hooks';
 import { Typography } from '@material-ui/core';
@@ -29,11 +29,11 @@ export const EventBuildingFields = React.memo((props: IEventBuildingFieldsProps)
       <Typography variant='h5'>{title}</Typography>
 
       <InputText value={draft.name} label='Building Name' onChange={(value) => update({ name: value })} />
-      <InputNumber value={draft.culture} name='culture' onChange={update} />
-      <InputNumber value={draft.population} name='population' onChange={update} />
-      <InputNumber value={draft.supply} name='supply' onChange={update} />
-      <InputNumber value={draft.width} name='width' onChange={update} />
-      <InputNumber value={draft.height} name='height' onChange={update} />
+      <InputInteger value={draft.culture} name='culture' onChange={update} />
+      <InputInteger value={draft.population} name='population' onChange={update} />
+      <InputInteger value={draft.supply} name='supply' onChange={update} />
+      <InputInteger value={draft.width} name='width' onChange={update} />
+      <InputInteger value={draft.height} name='height' onChange={update} />
 
       <button onClick={publish}>Save</button>
       <button onClick={() => props.onRemove(props)}>Remove</button>

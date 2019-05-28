@@ -14,7 +14,7 @@ interface IInputNumberProps {
   onChange?: (changeEvent: { [key: string]: number }) => void
 }
 
-export const InputNumber = (props: IInputNumberProps) => {
+export const InputInteger = (props: IInputNumberProps) => {
   const { name, label, value } = props
   const uuid = useUUID()
 
@@ -39,7 +39,7 @@ export const InputNumber = (props: IInputNumberProps) => {
     if (isNil(props.onChange)) return
 
     props.onChange({
-      [props.name]: parseFloat(e.target.value)
+      [props.name]: parseInt(e.target.value)
     })
   }
 }

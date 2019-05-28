@@ -4,8 +4,8 @@ import { ActionCreators } from '../../../reducers';
 import { IState } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft } from '../../../hooks';
-import { InputNumber } from '../../Inputs/InputNumber';
-import { Panel } from '../../../layouts/Panel'
+import { InputInteger } from '../../Inputs';
+import { Panel } from '../../../layouts'
 
 export const MainHallPanel = () => {
   const actions = useActionCreators(ActionCreators)
@@ -24,12 +24,12 @@ export const MainHallPanel = () => {
       onSaveClicked={publish}
     >
       <>
-        <InputNumber value={draft.level} name='level' onChange={update} />
-        <InputNumber value={draft.population} name='population' onChange={update} />
-        <InputNumber value={draft.culture} name='culture' onChange={update} />
-        <InputNumber value={draft.supplyCapacity} name='supplyCapacity' onChange={update} />
-        <InputNumber value={draft.width} name='width' onChange={update} />
-        <InputNumber value={draft.height} name='height' onChange={update} />
+        <InputInteger value={draft.level} name='level' onChange={update} />
+        <InputInteger value={draft.population} name='population' onChange={update} />
+        <InputInteger value={draft.culture} name='culture' onChange={update} />
+        <InputInteger value={draft.supplyCapacity} name='supplyCapacity' onChange={update} />
+        <InputInteger value={draft.width} name='width' onChange={update} />
+        <InputInteger value={draft.height} name='height' onChange={update} />
       </>
     </Panel>
   )

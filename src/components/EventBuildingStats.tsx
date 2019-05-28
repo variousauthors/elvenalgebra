@@ -1,6 +1,6 @@
 import React from 'react'
 import { IEventBuilding } from '../types';
-import { InputNumber } from './Inputs/InputNumber';
+import { InputInteger } from './Inputs';
 import { useDerivedStats } from '../hooks';
 
 interface IEventBuildingStatsProps extends IEventBuilding { }
@@ -33,8 +33,8 @@ export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
 
   return (
     <div>
-      <InputNumber value={effectiveArea} label='Effective Area' name='totalArea' readOnly />
-      <InputNumber value={efficiency} label='Efficiency' name='efficiency' readOnly />
+      <InputInteger value={effectiveArea} label='Effective Area' name='totalArea' readOnly />
+      <InputInteger value={efficiency} label='Efficiency' name='efficiency' readOnly />
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { ActionCreators } from '../../../reducers';
 import { IState } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
-import { InputNumber } from '../../Inputs/InputNumber';
+import { InputInteger, InputPercent } from '../../Inputs';
 import { Panel } from '../../../layouts'
 
 export const GoldenAbyssPanel = () => {
@@ -26,8 +26,8 @@ export const GoldenAbyssPanel = () => {
       onSaveClicked={publish}
     >
       <>
-        <InputNumber value={draft.level} name='level' onChange={update} />
-        <InputNumber value={draft.percent} name='percent' step='.01' onChange={update} />
+        <InputInteger value={draft.level} name='level' onChange={update} />
+        <InputPercent value={draft.percent} label='Percent' step='.01' onChange={(value) => update({ percent: value })} />
       </>
     </Panel>
   )

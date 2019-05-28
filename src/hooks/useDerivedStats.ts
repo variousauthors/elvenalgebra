@@ -33,7 +33,7 @@ const useSuppliesPerSquare24Hr = () => {
   const popPerSquare = usePopPerSquare()
   const { workshopFields, townFields, playstyleFields, goldenAbyssFields } = useSelect(selectFields)
 
-  const workshopPopulation = workshopFields.population - (workshopFields.population * goldenAbyssFields.percent/100)
+  const workshopPopulation = workshopFields.population - (workshopFields.population * goldenAbyssFields.percent)
 
   const roadSquares = Math.min(workshopFields.width, workshopFields.height)
   const cultureCost = workshopFields.culture - (roadSquares * townFields.roadsCulture)
@@ -51,7 +51,7 @@ const useSuppliesPerSquare24Hr = () => {
 const useGoldenAbyssPopulation = () => {
   const { townFields, goldenAbyssFields } = useSelect(selectFields)
 
-  return townFields.workingPopulation * goldenAbyssFields.percent/100
+  return townFields.workingPopulation * goldenAbyssFields.percent
 }
 
 const selectFields = (state: IState) => {

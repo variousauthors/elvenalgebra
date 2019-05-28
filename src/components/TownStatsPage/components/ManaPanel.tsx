@@ -4,9 +4,8 @@ import { ActionCreators } from '../../../reducers';
 import { IState, IManaFields } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
-import { InputNumber } from '../../Inputs/InputNumber';
-import { Panel } from '../../../layouts/Panel'
-import { InputText } from '../../Inputs';
+import { Panel } from '../../../layouts'
+import { InputText, InputInteger } from '../../Inputs';
 
 export const ManaPanel = () => {
   const actions = useActionCreators(ActionCreators)
@@ -28,9 +27,9 @@ export const ManaPanel = () => {
     >
       <>
         <InputText value={draft.name} label='name' onChange={(value) => update({ name: value })} />
-        <InputNumber value={draft.mana1Hr} label='Mana Per Hour' name='mana1Hr' onChange={update} />
-        <InputNumber value={draft.width} name='width' onChange={update} />
-        <InputNumber value={draft.height} name='height' onChange={update} />
+        <InputInteger value={draft.mana1Hr} label='Mana Per Hour' name='mana1Hr' onChange={update} />
+        <InputInteger value={draft.width} name='width' onChange={update} />
+        <InputInteger value={draft.height} name='height' onChange={update} />
       </>
     </Panel>
   )

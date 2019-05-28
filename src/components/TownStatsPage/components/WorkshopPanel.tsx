@@ -4,8 +4,8 @@ import { ActionCreators } from '../../../reducers';
 import { IState, IWorkshopFields } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
-import { InputNumber } from '../../Inputs/InputNumber';
-import { Panel } from '../../../layouts/Panel'
+import { InputInteger } from '../../Inputs';
+import { Panel } from '../../../layouts'
 
 export const WorkshopPanel = () => {
   const actions = useActionCreators(ActionCreators)
@@ -26,13 +26,13 @@ export const WorkshopPanel = () => {
       onSaveClicked={publish}
     >
       <>
-        <InputNumber value={draft.level} label='Level' name='level' onChange={update} />
-        <InputNumber value={draft.population} label='Population' name='population' onChange={update} />
-        <InputNumber value={draft.culture} label='Culture' name='culture' onChange={update} />
-        <InputNumber value={draft.supply3Hr} label='3 HR' name='supply3Hr' onChange={update} />
-        <InputNumber value={draft.supply9Hr} label='9 HR' name='supply9Hr' onChange={update} />
-        <InputNumber value={draft.width} name='width' onChange={update} />
-        <InputNumber value={draft.height} name='height' onChange={update} />
+        <InputInteger value={draft.level} label='Level' name='level' onChange={update} />
+        <InputInteger value={draft.population} label='Population' name='population' onChange={update} />
+        <InputInteger value={draft.culture} label='Culture' name='culture' onChange={update} />
+        <InputInteger value={draft.supply3Hr} label='3 HR' name='supply3Hr' onChange={update} />
+        <InputInteger value={draft.supply9Hr} label='9 HR' name='supply9Hr' onChange={update} />
+        <InputInteger value={draft.width} name='width' onChange={update} />
+        <InputInteger value={draft.height} name='height' onChange={update} />
       </>
     </Panel>
   )
