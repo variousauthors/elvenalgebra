@@ -14,6 +14,7 @@ import {
   playstyleFields,
   mainHallFields,
   goldenAbyssFields,
+  prosperityTowersFields,
 } from '../reducers';
 
 const persistConfig = {
@@ -31,6 +32,7 @@ const rootReducer = combineReducers<IState, IAnyAction>({
   playstyleFields,
   mainHallFields,
   goldenAbyssFields,
+  prosperityTowersFields,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

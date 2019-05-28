@@ -2,7 +2,7 @@ import { IGoldenAbyssFields } from '../types/state';
 import { makeFieldsReducer } from './helpers';
 
 const initialState: IGoldenAbyssFields = {
-  level: 1,
+  level: 0,
   percent: 0,
   area: 9
 }

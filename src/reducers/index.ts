@@ -5,7 +5,9 @@ import { updateWorkshopFields } from './workshopFieldsReducer'
 import { updateManaFields } from './manaFieldsReducer'
 import { updatePlaystyleFields } from './playstyleFieldsReducer'
 import { updateMainHallFields } from './mainHallFieldsReducer'
+
 import { updateGoldenAbyssFields } from './goldenAbyssFieldsReducer'
+import { updateProsperityTowersFields } from './prosperityTowersFieldsReducer'
 
 import { updateEventBuilding, addEventBuilding, deleteEventBuilding } from './eventBuildingReducer'
 
@@ -16,7 +18,9 @@ export { workshopFields } from './workshopFieldsReducer'
 export { manaFields } from './manaFieldsReducer'
 export { playstyleFields } from './playstyleFieldsReducer'
 export { mainHallFields } from './mainHallFieldsReducer'
+
 export { goldenAbyssFields } from './goldenAbyssFieldsReducer'
+export { prosperityTowersFields } from './prosperityTowersFieldsReducer'
 
 export { eventBuildingsReducer as eventBuildings } from './eventBuildingReducer'
 
@@ -24,12 +28,15 @@ export const ActionCreators = {
   updateCultureFields,
   updateResidenceFields,
   updateTownFields,
-  updateEventBuilding,
   updateWorkshopFields,
   updateManaFields,
   updatePlaystyleFields,
   updateMainHallFields,
+
   updateGoldenAbyssFields,
+  updateProsperityTowersFields,
+
+  updateEventBuilding,
   addEventBuilding,
   deleteEventBuilding,
 }
