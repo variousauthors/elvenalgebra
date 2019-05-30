@@ -26,7 +26,13 @@ const is = (score: number, rating: Rating) => score >= minimumScore[rating]
  * 
  * @param x a rational number
  */
-export const calculateScore = (x: number) => (clamp(x) * 100) | 0
+export const calculateScore = (x: number) => {
+  if (x <= 0) {
+    return 0
+  }
+
+  return (clamp(x) * 100) | 0
+}
 
 /**
  * given a score, returns a rating
