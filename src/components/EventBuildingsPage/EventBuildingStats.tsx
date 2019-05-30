@@ -1,7 +1,8 @@
 import React from 'react'
-import { IEventBuilding } from '../types';
-import { InputInteger } from './Inputs';
-import { useDerivedStats } from '../hooks';
+import { IEventBuilding } from '../../types';
+import { InputInteger } from '../Inputs';
+import { sigmoid } from '../../helpers/sigmoid';
+import { useDerivedStats } from '../../hooks';
 
 interface IEventBuildingStatsProps extends IEventBuilding { }
 
@@ -26,6 +27,11 @@ const useEffectiveArea = (props: IEventBuildingStatsProps) => {
     .reduce((_, x) => x, 0)
 }
 
+/**
+ * Magic numbers, chosen for their celestial significance
+ */
+const score = sigmoid(1.5, 2)
+
 export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
   const effectiveArea = useEffectiveArea(props)
   const area = props.width * props.height
@@ -35,6 +41,7 @@ export const EventBuildingStats = (props: IEventBuildingStatsProps) => {
     <div>
       <InputInteger value={effectiveArea} label='Effective Area' name='totalArea' readOnly />
       <InputInteger value={efficiency} label='Efficiency' name='efficiency' readOnly />
+      <InputInteger value={score(efficiency)} label='Score' name='score' readOnly />
     </div>
   )
 }

@@ -1,4 +1,4 @@
 export * from './BottomNavigation'
 export * from './TownStatsPage'
-export * from './EventBuildingsPanel'
+export * from './EventBuildingsPage'
 export * from './AncientWondersPage'
