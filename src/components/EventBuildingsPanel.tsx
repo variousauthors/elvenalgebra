@@ -11,6 +11,7 @@ import { Grid, Paper, Fab } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    position: 'relative'
   },
   paper: {
     padding: theme.spacing(2),
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   fab: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
