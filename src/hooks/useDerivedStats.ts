@@ -44,7 +44,7 @@ const useSuppliesPerSquare24Hr = () => {
   const supplyPer24Hr = playstyleFields.daily3HrCollections * workshopFields.supply3Hr + playstyleFields.daily9HrCollections * workshopFields.supply9Hr
   const supplyPer24HrPerSquare = supplyPer24Hr / effectiveArea
 
-  return supplyPer24HrPerSquare
+  return supplyPer24HrPerSquare * playstyleFields.cultureBonus
 }
 
 const useGoldenAbyssEfficiency = () => {

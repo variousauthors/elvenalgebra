@@ -4,10 +4,6 @@ NEXTSTEPS
 # Backlog
 
 ## Easy
- - Display event building's Score in a prominent way (red/yello/green)
-   - score is calculated from efficiency as basically a sigmoid function from like 0 (red) to 3 (green)
- - Add Culture Bonus to supply calculations in playstyle config
-   - just have a percent input
  - Event Building Sorting/Filters on the top of the page
    - sort by efficiency, filter by supply/population/mana/culture, filter by score, filter by collections (below)
  - Add Manufactories <-- lots of effort but very little thinking
@@ -45,6 +41,10 @@ NEXTSTEPS
    - route/filters/redux etc should all be persisted across changes so that a player can set filters
      and then toggle between towns to compare realities
  - Evolving Buildings??? these can just be event buildings...
+
+# Done
+ - [x] Add Culture Bonus to supply calculations in playstyle config
+ - [x] Display event building's Score in a prominent way (red/yello/green)
 
 # Event Building Card
  - Needs a paper mock up including:

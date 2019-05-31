@@ -43,6 +43,7 @@ export interface IManaFields {
 export interface IPlaystyleFields {
   daily3HrCollections: number,
   daily9HrCollections: number,
+  cultureBonus: number,
 }
 
 export interface IMainHallFields {

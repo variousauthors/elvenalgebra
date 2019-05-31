@@ -4,6 +4,7 @@ import { Action } from "redux";
 const initialState: IPlaystyleFields = {
   daily3HrCollections: 0,
   daily9HrCollections: 0,
+  cultureBonus: 1,
 }
 
 enum PlaystyleFieldsActions {
