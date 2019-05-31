@@ -5,16 +5,21 @@ import {
   updateManaFields, 
   updatePlaystyleFields, 
   updateResidenceFields, 
-  updateWorkshopFields 
+  updateWorkshopFields,
 } from './townReducers'
 
 import {
   updateGoldenAbyssFields,
   updateEndlessExcavationFields,
-  updateProsperityTowersFields
+  updateProsperityTowersFields,
 } from './wonderReducers'
 
-import { updateEventBuilding, addEventBuilding, deleteEventBuilding } from './eventBuildingReducer'
+import {
+  updateEventBuildingFilters,
+  updateEventBuilding, 
+  addEventBuilding, 
+  deleteEventBuilding,
+} from './eventBuildingReducers'
 
 export const ActionCreators = {
   updateCultureFields,
@@ -32,6 +37,8 @@ export const ActionCreators = {
   updateEventBuilding,
   addEventBuilding,
   deleteEventBuilding,
+
+  updateEventBuildingFilters,
 }
 
 export { 
@@ -41,13 +48,16 @@ export {
   workshopFields, 
   manaFields, 
   playstyleFields, 
-  mainHallFields 
+  mainHallFields,
 } from './townReducers'
 
 export { 
   goldenAbyssFields, 
   prosperityTowersFields, 
-  endlessExcavationFields 
+  endlessExcavationFields,
 } from './wonderReducers'
 
-export { eventBuildingsReducer as eventBuildings } from './eventBuildingReducer'
+export {
+  eventBuildingsReducer as eventBuildings,
+  eventBuildingFilters,
+} from './eventBuildingReducers'

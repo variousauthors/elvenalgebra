@@ -1,4 +1,4 @@
-import { IEventBuilding, IEventBuildings, IEventBuildingAttributes, IState } from "../types";
+import { IEventBuilding, IEventBuildings, IEventBuildingAttributes, IState } from "../../types";
 import { isNumber } from "util";
 import isNil from "ramda/es/isNil";
 

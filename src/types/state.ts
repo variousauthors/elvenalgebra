@@ -73,6 +73,10 @@ export interface IEndlessExcavationFields {
   percent: number
 }
 
+export interface IEventBuildingFilters {
+  name: string
+}
+
 export interface IState {
   townFields: ITownFields
   residenceFields: IResidenceFields
@@ -87,6 +91,8 @@ export interface IState {
   endlessExcavationFields: IEndlessExcavationFields
 
   eventBuildings: IEventBuildings
+
+  eventBuildingFilters: IEventBuildingFilters
 }
 
 export interface IEventBuildings {

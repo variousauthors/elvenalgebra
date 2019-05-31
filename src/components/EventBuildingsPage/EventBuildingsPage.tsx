@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { EventBuildingFields } from "../Fields";
 import { useActionCreators, useSelect } from "@epeli/redux-hooks";
 import { ActionCreators } from '../../reducers';
-import { selectAllEventBuildings } from "../../reducers/eventBuildingReducer";
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Fab } from '@material-ui/core';
 import { useDerivedStats } from '../../hooks';
-import { IEventBuilding } from '../../types';
+import { IEventBuilding, IState } from '../../types';
 import { InputInteger } from '../Inputs';
 import { calculateScore, toColor } from './helpers/score';
+import { EventBuildingFilters } from './EventBuildingFilters'
+import { selectAllEventBuildings } from '../../reducers/eventBuildingReducers';
+import { contains, toLower } from 'ramda'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,15 +99,21 @@ const EventBuilding = (props: IEventBuilding) => {
   )
 }
 
+const filterByName = (substring: string, name: string) => contains(toLower(substring), toLower(name))
+
 export const EventBuildingsPage = () => {
   const classes = useStyles()
   const eventBuildings = useSelect(selectAllEventBuildings)
+  const filters = useSelect((state: IState) => state.eventBuildingFilters)
   const actions = useActionCreators(ActionCreators)
 
-  const buildings = eventBuildings.map(eventBuilding => <EventBuilding {...eventBuilding} />)
+  const buildings = eventBuildings
+    .filter((eventBuilding) => filterByName(filters.name, eventBuilding.name))
+    .map(eventBuilding => <EventBuilding {...eventBuilding} />)
 
   return (
     <div className={classes.root}>
+      <EventBuildingFilters />
       <Grid container spacing={3}>
         {buildings}
       </Grid>
