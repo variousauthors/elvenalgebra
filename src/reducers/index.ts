@@ -16,6 +16,7 @@ import {
 
 import {
   updateEventBuildingFilters,
+  updateScoreFilter,
   updateEventBuilding, 
   addEventBuilding, 
   deleteEventBuilding,
@@ -39,6 +40,7 @@ export const ActionCreators = {
   deleteEventBuilding,
 
   updateEventBuildingFilters,
+  updateScoreFilter,
 }
 
 export { 

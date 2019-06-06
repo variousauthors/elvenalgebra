@@ -5,7 +5,11 @@ NEXTSTEPS
 
 ## Easy
  - Event Building Sorting/Filters on the top of the page
-   - sort by efficiency, filter by supply/population/mana/culture, filter by score, filter by collections (below)
+   - filter by name
+   - sort by id (default), alpha, efficiency
+   - filter by supply/population/mana/culture
+   - filter by score (gte, lte)
+   - filter by collections (below)
  - Add Manufactories <-- lots of effort but very little thinking
  - Display the "breakdown" of effective area
  - Start importing and using icons from the game

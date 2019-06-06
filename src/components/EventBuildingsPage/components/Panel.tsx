@@ -78,8 +78,7 @@ export const Panel = (props: IPanelProps) => {
       <Divider />
 
       <ExpansionPanelActions>
-        <Button size="small">Cancel</Button>
-        <Button size="small" color="primary" onClick={(e) => handleSaveClicked(props.onSaveClicked)}>Save</Button>
+        <Button size="small">Clear</Button>
       </ExpansionPanelActions>
     </ExpansionPanel>
   )

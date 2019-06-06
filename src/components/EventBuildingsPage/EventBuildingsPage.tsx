@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Fab } from '@material-ui/core';
 import { useDerivedStats } from '../../hooks';
-import { IEventBuilding, IState } from '../../types';
+import { IEventBuilding, IState, IScoreFilter } from '../../types';
 import { InputInteger } from '../Inputs';
 import { calculateScore, toColor } from './helpers/score';
 import { EventBuildingFilters } from './EventBuildingFilters'
@@ -100,6 +100,13 @@ const EventBuilding = (props: IEventBuilding) => {
 }
 
 const filterByName = (substring: string, name: string) => contains(toLower(substring), toLower(name))
+const filterByScore = (scoreFilter: IScoreFilter, score: number) => {
+  switch (scoreFilter.operator) {
+    case 'gte': return score >= scoreFilter.value
+    case 'lte': return score <= scoreFilter.value
+    default: throw new Error(`scoreFilter.operator was ${scoreFilter.operator}`)
+  }
+}
 
 export const EventBuildingsPage = () => {
   const classes = useStyles()
@@ -109,6 +116,7 @@ export const EventBuildingsPage = () => {
 
   const buildings = eventBuildings
     .filter((eventBuilding) => filterByName(filters.name, eventBuilding.name))
+    .filter((eventBuilding) => filterByScore(filters.score, eventBuilding.score))
     .map(eventBuilding => <EventBuilding {...eventBuilding} />)
 
   return (

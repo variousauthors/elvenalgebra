@@ -73,8 +73,14 @@ export interface IEndlessExcavationFields {
   percent: number
 }
 
+export interface IScoreFilter {
+  operator: 'gte' | 'lte'
+  value: number
+}
+
 export interface IEventBuildingFilters {
   name: string
+  score: IScoreFilter
 }
 
 export interface IState {
