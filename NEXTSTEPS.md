@@ -3,6 +3,11 @@ NEXTSTEPS
 
 # Backlog
 
+## Unestimated
+ - when creating a new event building
+   - the name field should get focus
+   - scroll to that event building
+
 ## Easy
  - Display event building's Score in a prominent way (red/yello/green)
    - score is calculated from efficiency as basically a sigmoid function from like 0 (red) to 3 (green)
