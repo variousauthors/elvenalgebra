@@ -3,6 +3,11 @@ NEXTSTEPS
 
 # Backlog
 
+## Unestimated
+ - when creating a new event building
+   - the name field should get focus
+   - scroll to that event building
+
 ## Easy
  - Event Building Sorting/Filters on the top of the page
    - filter by name
