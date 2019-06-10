@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Panel } from './components'
 import { useSelect, useActionCreators } from '@epeli/redux-hooks';
 import { IState, IScoreFilter } from '../../types';
-import { InputText, InputInteger } from '../Inputs';
+import { InputText, InputInteger, InputPercent } from '../Inputs';
 import { ActionCreators } from '../../reducers';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +53,7 @@ export const EventBuildingFilters = (props: IEventBuildingFiltersProps) => {
               <option value='lte'>less than</option>
             </select>
             <div className={classes.score}>
-              <InputInteger value={filters.score.value} name='value' onChange={updateScore} />
+              <InputPercent value={filters.score.value} label='value' onChange={(value) => updateScore({ value })} />
             </div>
           </div>
         </>

@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { EventBuildingFields } from "../Fields";
 import { useActionCreators, useSelect } from "@epeli/redux-hooks";
 import { ActionCreators } from '../../reducers';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Fab } from '@material-ui/core';
-import { useDerivedStats } from '../../hooks';
+import { useDerivedStats, useEventBuildingStats } from '../../hooks';
 import { IEventBuilding, IState, IScoreFilter } from '../../types';
 import { InputInteger } from '../Inputs';
-import { calculateScore, toColor } from './helpers/score';
+import { toColor, calculateEventBuildingStats } from './helpers';
 import { EventBuildingFilters } from './EventBuildingFilters'
 import { selectAllEventBuildings } from '../../reducers/eventBuildingReducers';
 import { contains, toLower } from 'ramda'
+import { toInteger } from '../../helpers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,43 +47,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Identity<T>(x: T) {
-  return {
-    map: function <R>(f: (x: T) => R) {
-      return Identity(f(x))
-    },
-    reduce: function <R>(f: (acc: R, x: T) => R, initial: R) {
-      return [x].reduce(f, initial)
-    }
-  }
-}
-
-interface IEventBuildingStatsProps extends IEventBuilding { }
-
-const useEffectiveArea = (props: IEventBuildingStatsProps) => {
-  const { popPerSquare, culturePerSquare, supplyPer24HrPerSquare } = useDerivedStats()
-
-  return Identity(0)
-    .map(x => x + (props.culture / culturePerSquare))
-    .map(x => x + (props.population / popPerSquare))
-    .map(x => x + (props.supply / supplyPer24HrPerSquare))
-    .reduce((_, x) => x, 0)
-}
-
 const EventBuilding = (props: IEventBuilding) => {
   const eventBuilding = props
   const actions = useActionCreators(ActionCreators)
   const classes = useStyles()
-  const effectiveArea = useEffectiveArea(props)
-  const area = props.width * props.height
-  const efficiency = (area > 0) ? effectiveArea / area : 0
-  const score = calculateScore(efficiency)
+
+  const { effectiveArea, efficiency, score } = useEventBuildingStats(props)
+
+  const displayScore = toInteger(score * 100)
 
   return (
     <Grid item md={6} xs={12} lg={4} key={eventBuilding.id}>
       <Paper className={classes.paper}>
         <div className={classes.badge}>
-          <div style={{ backgroundColor: toColor(score) }} className={classes.score}>{score}</div>
+          <div style={{ backgroundColor: toColor(displayScore) }} className={classes.score}>{displayScore}</div>
         </div>
         <EventBuildingFields
           onSave={actions.updateEventBuilding}
@@ -108,16 +86,34 @@ const filterByScore = (scoreFilter: IScoreFilter, score: number) => {
   }
 }
 
+interface IScoresById {
+  [key: number]: number
+}
+
+const useEventBuildingScores = (eventBuildings: IEventBuilding[]) => {
+  const derivedStats = useDerivedStats()
+
+  return eventBuildings.reduce((scores, eventBuilding) => {
+    const { score } = calculateEventBuildingStats(eventBuilding, derivedStats)
+
+    scores[eventBuilding.id] = score
+
+    return scores
+  }, {} as IScoresById)
+}
+
 export const EventBuildingsPage = () => {
   const classes = useStyles()
   const eventBuildings = useSelect(selectAllEventBuildings)
+  const scores = useEventBuildingScores(eventBuildings)
+
   const filters = useSelect((state: IState) => state.eventBuildingFilters)
   const actions = useActionCreators(ActionCreators)
 
   const buildings = eventBuildings
     .filter((eventBuilding) => filterByName(filters.name, eventBuilding.name))
-    .filter((eventBuilding) => filterByScore(filters.score, eventBuilding.score))
-    .map(eventBuilding => <EventBuilding {...eventBuilding} />)
+    .filter((eventBuilding) => filterByScore(filters.score, scores[eventBuilding.id]))
+    .map(eventBuilding => <EventBuilding key={eventBuilding.id} {...eventBuilding} />)
 
   return (
     <div className={classes.root}>

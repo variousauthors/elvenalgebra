@@ -21,8 +21,8 @@ const colorCode = {
 const is = (score: number, rating: Rating) => score >= minimumScore[rating]
 
 /**
- * given a rational number x, scoreCalculator returns an integer
- * in the range [0, 100]
+ * given a rational number x, scoreCalculator returns a rational
+ * number in the range [0, 1]
  * 
  * @param x a rational number
  */
@@ -31,7 +31,7 @@ export const calculateScore = (x: number) => {
     return 0
   }
 
-  return (clamp(x) * 100) | 0
+  return clamp(x)
 }
 
 /**

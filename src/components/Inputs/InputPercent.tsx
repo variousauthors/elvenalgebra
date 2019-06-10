@@ -25,7 +25,7 @@ export const InputPercent = (props: IInputPercentProps) => {
   return (
     <div>
       <label htmlFor={uuid}>{label}</label>
-      <input value={value} id={uuid} step='0.01' type='number' onChange={onChange} readOnly={props.readOnly} />
+      <input value={value} id={uuid} step='1' type='number' onChange={onChange} readOnly={props.readOnly} />
     </div>
   )
 

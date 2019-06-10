@@ -96,7 +96,17 @@ const selectFields = (state: IState) => {
   })
 }
 
-export const useDerivedStats = () => {
+export interface IDerivedStats {
+  culturePerSquare: number
+  popPerSquare: number
+  supplyPer24HrPerSquare: number
+  manaPerHrPerSquare: number
+  goldenAbyssEfficiency: number
+  prosperityTowersEfficiency: number
+  endlessExcavationEfficiency: number
+}
+
+export const useDerivedStats = (): IDerivedStats => {
   return {
     culturePerSquare: useCulturePerSquare(),
     popPerSquare: usePopPerSquare(),
