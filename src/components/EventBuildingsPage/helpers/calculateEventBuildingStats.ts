@@ -19,7 +19,7 @@ export const calculateEventBuildingStats = (eventBuilding: IEventBuilding, deriv
   const effectiveArea = Identity(0)
     .map(x => x + (eventBuilding.culture / culturePerSquare))
     .map(x => x + (eventBuilding.population / popPerSquare))
-    .map(x => x + (eventBuilding.supply / supplyPer24HrPerSquare))
+    .map(x => x + (eventBuilding.supply24Hr / supplyPer24HrPerSquare))
     .reduce((_, x) => x, 0)
 
   const area = eventBuilding.width * eventBuilding.height

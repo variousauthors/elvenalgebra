@@ -8,6 +8,13 @@ NEXTSTEPS
    - the name field should get focus
    - scroll to that event building
 
+ - Manufactory prototype
+   - size, level
+   - generic goods / 3hr and 9hr
+   - boosted checkbox
+   - this will just help me see the effective area of a manufactory
+     so that I can think about stuff
+
 ## Easy
  - Event Building Sorting/Filters on the top of the page
    - filter by name

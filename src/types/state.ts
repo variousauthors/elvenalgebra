@@ -101,6 +101,14 @@ export interface IState {
   eventBuildingFilters: IEventBuildingFilters
 }
 
+export interface IManufactoryFields {
+  culture: number
+  population: number
+  level: number
+  supply: number
+
+}
+
 export interface IEventBuildings {
   nextId: number
   [key: string]: IEventBuilding | number
@@ -112,7 +120,7 @@ export interface IEventBuildingAttributes {
   culture: number
   mana: number
   population: number
-  supply: number
+  supply24Hr: number
   name: string
 }
 

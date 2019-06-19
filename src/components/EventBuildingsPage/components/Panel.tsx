@@ -39,12 +39,6 @@ interface IPanelProps {
   children: JSX.Element
 }
 
-const handleSaveClicked = (onSaveClicked?: () => void) => {
-  if (isNil(onSaveClicked)) return
-
-  onSaveClicked()
-}
-
 export const Panel = (props: IPanelProps) => {
   const classes = usePanelStyles()
   const defaultExpanded = Boolean(props.defaultExpanded)

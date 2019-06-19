@@ -1,6 +1,7 @@
 import { IEventBuilding, IEventBuildings, IEventBuildingAttributes, IState } from "../../types";
 import { isNumber } from "util";
 import isNil from "ramda/es/isNil";
+import { REHYDRATE } from 'redux-persist'
 
 const initialState: IEventBuildings = { 
   nextId: 1
@@ -12,14 +13,14 @@ const newEventBuilding: IEventBuildingAttributes = {
   height: 0,
   population: 0,
   mana: 0,
-  supply: 0,
+  supply24Hr: 0,
   name: ''
 }
 
 enum EventBuildingActions {
   UPDATE_EVENT_BUILDING = 'UPDATE_EVENT_BUILDING',
   ADD_EVENT_BUILDING = 'ADD_EVENT_BUILDING',
-  DELETE_EVENT_BUILDING = 'DELETE_EVENT_BUILDING'
+  DELETE_EVENT_BUILDING = 'DELETE_EVENT_BUILDING',
 }
 
 interface IAction<T, K> {
@@ -27,9 +28,15 @@ interface IAction<T, K> {
   data: K
 }
 
+interface IPersistREHYDRATE {
+  type: typeof REHYDRATE
+  payload: IState
+}
+
 type EventBuildingAction = IAddEventBuildingAction
   | IUpdateEventBuildingAction
   | IDeleteEventBuildingAction
+  | IPersistREHYDRATE
 
 interface IUpdateEventBuildingAction extends IAction<EventBuildingActions.UPDATE_EVENT_BUILDING, IEventBuilding> {}
 interface IAddEventBuildingAction extends IAction<EventBuildingActions.ADD_EVENT_BUILDING, undefined> {}
@@ -116,6 +123,27 @@ export const eventBuildingsReducer = (state: IEventBuildings = initialState, act
         ...state,
         [id]: undefined
       }
+    }
+    case REHYDRATE: {
+      const eventBuildingsPayload = action.payload.eventBuildings
+
+      const eventBuildings = Object.values(eventBuildingsPayload).reduce((eventBuildings, buildingPayload) => {
+        if (typeof buildingPayload === 'number') {
+          return {
+            ...eventBuildings,
+            nextId: buildingPayload,
+          }
+        }
+
+        eventBuildings[buildingPayload.id] = {
+          ...newEventBuilding,
+          ...buildingPayload,
+        }
+
+        return eventBuildings
+      }, initialState)
+
+      return eventBuildings
     }
     default: {
       return state
