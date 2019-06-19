@@ -1,10 +1,14 @@
 import { ITownFields } from "../../types/state";
 import { Action } from "redux";
+import { GoodsType } from "../../types";
 
 const initialState: ITownFields = {
   population: 0,
   workingPopulation: 0,
   roadsCulture: 0,
+  boostedT1: GoodsType.NONE,
+  boostedT2: GoodsType.NONE,
+  boostedT3: GoodsType.NONE,
 }
 
 enum TownFieldsActions {

@@ -1,9 +1,13 @@
 import { Action } from "redux";
+import { GoodsType } from "./goods";
 
 export interface ITownFields {
   population: number
   workingPopulation: number
   roadsCulture: number
+  boostedT1: GoodsType.MARBLE | GoodsType.STEEL | GoodsType.WOOD | GoodsType.NONE
+  boostedT2: GoodsType.CRYSTAL | GoodsType.SCROLLS | GoodsType.SILK | GoodsType.NONE
+  boostedT3: GoodsType.ELIXIR | GoodsType.DUST | GoodsType.SCROLLS | GoodsType.NONE
 }
 
 export interface IResidenceFields {
@@ -102,11 +106,17 @@ export interface IState {
 }
 
 export interface IManufactoryFields {
+  width: number
+  height: number
+  name: number
   culture: number
   population: number
   level: number
-  supply: number
-
+  supply3Hr: number
+  supply9Hr: number
+  goods3Hr: number
+  goods9Hr: number
+  goodsType: GoodsType
 }
 
 export interface IEventBuildings {
