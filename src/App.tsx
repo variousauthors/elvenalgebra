@@ -75,6 +75,10 @@ const DrawerContents = () => {
           <ListItemIcon><MailIcon /></ListItemIcon>
           <ListItemText primary={'Event Buildings'} />
         </ListItem>
+        <ListItem button key={'Manufactories'} onClick={() => history.push('manufactories')}>
+          <ListItemIcon><MailIcon /></ListItemIcon>
+          <ListItemText primary={'Manufactories'} />
+        </ListItem>
       </List>
     </div>
   )
@@ -90,6 +94,10 @@ const TitleEventBuildings = () => {
 
 const TitleAncientWonders = () => {
   return <>Configure Your Ancient Wonders</>
+}
+
+const TitleManufactories = () => {
+  return <>Configure Your Manufactories</>
 }
 
 const App = () => {
@@ -120,6 +128,7 @@ const App = () => {
               <Route path="/town" component={TitleTown} />
               <Route path="/event-buildings" component={TitleEventBuildings} />
               <Route path="/ancient-wonders" component={TitleAncientWonders} />
+              <Route path="/manufactories" component={TitleManufactories} />
             </Switch>
           </Typography>
         </Toolbar>
@@ -162,6 +171,7 @@ const App = () => {
           <Route path="/town" component={TownStatsPage} />
           <Route path="/event-buildings" component={EventBuildingsPage} />
           <Route path="/ancient-wonders" component={AncientWondersPage} />
+          <Route path="/manufactories" component={undefined} />
         </Switch>
       </main>
     </div>
