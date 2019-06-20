@@ -17,6 +17,7 @@ import {
   goldenAbyssFields,
   prosperityTowersFields,
   endlessExcavationFields,
+  manufactories,
 } from '../reducers';
 
 const persistConfig = {
@@ -37,6 +38,7 @@ const rootReducer = combineReducers<IState, IAnyAction>({
   goldenAbyssFields,
   prosperityTowersFields,
   endlessExcavationFields,
+  manufactories,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

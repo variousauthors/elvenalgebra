@@ -22,6 +22,12 @@ import {
   deleteEventBuilding,
 } from './eventBuildingReducers'
 
+import { 
+  updateTier1Manufactory,
+  updateTier2Manufactory,
+  updateTier3Manufactory,
+} from './manufactoryReducers'
+
 export const ActionCreators = {
   updateCultureFields,
   updateResidenceFields,
@@ -41,6 +47,10 @@ export const ActionCreators = {
 
   updateEventBuildingFilters,
   updateScoreFilter,
+
+  updateTier1Manufactory,
+  updateTier2Manufactory,
+  updateTier3Manufactory,
 }
 
 export { 
@@ -63,3 +73,7 @@ export {
   eventBuildingsReducer as eventBuildings,
   eventBuildingFilters,
 } from './eventBuildingReducers'
+
+export { 
+  manufactories
+} from './manufactoryReducers'

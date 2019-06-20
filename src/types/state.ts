@@ -100,15 +100,21 @@ export interface IState {
   prosperityTowersFields: IProsperityTowersFields
   endlessExcavationFields: IEndlessExcavationFields
 
+  manufactories: IManufactories
   eventBuildings: IEventBuildings
 
   eventBuildingFilters: IEventBuildingFilters
 }
 
-export interface IManufactoryFields {
+export interface IManufactories {
+  tier1: IManufactory,
+  tier2: IManufactory,
+  tier3: IManufactory,
+}
+
+export interface IManufactory {
   width: number
   height: number
-  name: number
   culture: number
   population: number
   level: number
