@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { TownStatsPage, EventBuildingsPage, AncientWondersPage } from './components';
+import { TownStatsPage, EventBuildingsPage, AncientWondersPage, ManufactoriesPage } from './components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Route, Switch } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
@@ -171,7 +171,7 @@ const App = () => {
           <Route path="/town" component={TownStatsPage} />
           <Route path="/event-buildings" component={EventBuildingsPage} />
           <Route path="/ancient-wonders" component={AncientWondersPage} />
-          <Route path="/manufactories" component={undefined} />
+          <Route path="/manufactories" component={ManufactoriesPage} />
         </Switch>
       </main>
     </div>

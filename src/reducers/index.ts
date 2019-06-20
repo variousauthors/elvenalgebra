@@ -23,9 +23,7 @@ import {
 } from './eventBuildingReducers'
 
 import { 
-  updateTier1Manufactory,
-  updateTier2Manufactory,
-  updateTier3Manufactory,
+  updateManufactory
 } from './manufactoryReducers'
 
 export const ActionCreators = {
@@ -48,9 +46,7 @@ export const ActionCreators = {
   updateEventBuildingFilters,
   updateScoreFilter,
 
-  updateTier1Manufactory,
-  updateTier2Manufactory,
-  updateTier3Manufactory,
+  updateManufactory,
 }
 
 export { 

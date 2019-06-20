@@ -47,6 +47,32 @@ const useSuppliesPerSquare24Hr = () => {
   return supplyPer24HrPerSquare * playstyleFields.cultureBonus
 }
 
+const useGoodsPerSquare24Hr = () => {
+  const culturePerSquare = useCulturePerSquare()
+  const popPerSquare = usePopPerSquare()
+  const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
+
+  const { manufactories, townFields, playstyleFields, goldenAbyssFields } = useSelect(selectFields)
+  const tier1 = manufactories.tier1
+
+  const manuFactoryPopulation = tier1.population
+
+  const roadSquares = Math.min(tier1.width, tier1.height)
+  const cultureCost = tier1.culture - (roadSquares * townFields.roadsCulture)
+  const cultureSquares = cultureCost / culturePerSquare
+  const residenceSquares = manuFactoryPopulation / popPerSquare
+  const suppliesCost = tier1.supply3Hr * playstyleFields.daily3HrCollections + tier1.supply9Hr * playstyleFields.daily9HrCollections
+  const workshopSquares = suppliesCost / supplyPer24HrPerSquare
+
+  const area = tier1.width * tier1.height
+  const effectiveArea = area + roadSquares + cultureSquares + residenceSquares + workshopSquares
+
+  const goodsPer24Hr = playstyleFields.daily3HrCollections * tier1.goods3Hr + playstyleFields.daily9HrCollections * tier1.goods9Hr
+  const goodsPer24HrPerSquare = goodsPer24Hr / effectiveArea
+
+  return goodsPer24HrPerSquare
+}
+
 const useGoldenAbyssEfficiency = () => {
   const { townFields, goldenAbyssFields } = useSelect(selectFields)
   const popPerSquare = usePopPerSquare()
@@ -86,6 +112,7 @@ const selectFields = (state: IState) => {
     cultureFields: state.cultureFields,
     residenceFields: state.residenceFields,
     workshopFields: state.workshopFields,
+    manufactories: state.manufactories,
     townFields: state.townFields,
     manaFields: state.manaFields,
     mainHallFields: state.mainHallFields,
@@ -100,6 +127,7 @@ export interface IDerivedStats {
   culturePerSquare: number
   popPerSquare: number
   supplyPer24HrPerSquare: number
+  goodsPerSquare24Hr: number
   manaPerHrPerSquare: number
   goldenAbyssEfficiency: number
   prosperityTowersEfficiency: number
@@ -109,6 +137,7 @@ export interface IDerivedStats {
 export const useDerivedStats = (): IDerivedStats => {
   return {
     culturePerSquare: useCulturePerSquare(),
+    goodsPerSquare24Hr: useGoodsPerSquare24Hr(),
     popPerSquare: usePopPerSquare(),
     supplyPer24HrPerSquare: useSuppliesPerSquare24Hr(),
     manaPerHrPerSquare: useManaPerHrPerSquare(),

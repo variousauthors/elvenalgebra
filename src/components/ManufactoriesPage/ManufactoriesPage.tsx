@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { ManufactoryPanel } from './components';
 
 const useStyles = makeStyles({
   root: {
@@ -13,6 +14,7 @@ export function ManufactoriesPage() {
 
   return (
     <div className={classes.root}>
+      <ManufactoryPanel tier='tier1'/>
     </div>
   );
 }
