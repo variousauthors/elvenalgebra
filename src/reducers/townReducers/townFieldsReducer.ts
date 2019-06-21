@@ -6,9 +6,9 @@ const initialState: ITownFields = {
   population: 0,
   workingPopulation: 0,
   roadsCulture: 0,
-  boostedT1: GoodsType.NONE,
-  boostedT2: GoodsType.NONE,
-  boostedT3: GoodsType.NONE,
+  tier1: GoodsType.NONE,
+  tier2: GoodsType.NONE,
+  tier3: GoodsType.NONE,
 }
 
 enum TownFieldsActions {
@@ -19,9 +19,9 @@ interface IAction<T, K> extends Action<T> {
   data: K
 }
 
-interface ITownFieldsAction extends IAction<TownFieldsActions, ITownFields> {}
+interface ITownFieldsAction extends IAction<TownFieldsActions, Partial<ITownFields>> {}
 
-export const updateTownFields = (data: ITownFields): ITownFieldsAction => {
+export const updateTownFields = (data: Partial<ITownFields>): ITownFieldsAction => {
   return {
     type: TownFieldsActions.UPDATE_TOWN_FIELDS,
     data

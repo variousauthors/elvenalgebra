@@ -28,3 +28,19 @@ export const GoodsTypeNames: { [key in GoodsType]: string } = {
   [GoodsType.DUST]: 'Dust',
   [GoodsType.GEMS]: 'Gems',
 }
+
+export const GoodsTypeByName = (type: string) => {
+  switch (type) {
+    case GoodsTypeNames[GoodsType.NONE]: return GoodsType.NONE
+    case GoodsTypeNames[GoodsType.MARBLE]: return GoodsType.MARBLE
+    case GoodsTypeNames[GoodsType.STEEL]: return GoodsType.STEEL
+    case GoodsTypeNames[GoodsType.WOOD]: return GoodsType.WOOD
+    case GoodsTypeNames[GoodsType.CRYSTAL]: return GoodsType.CRYSTAL
+    case GoodsTypeNames[GoodsType.SCROLLS]: return GoodsType.SCROLLS
+    case GoodsTypeNames[GoodsType.SILK]: return GoodsType.SILK
+    case GoodsTypeNames[GoodsType.ELIXIR]: return GoodsType.ELIXIR
+    case GoodsTypeNames[GoodsType.DUST]: return GoodsType.DUST
+    case GoodsTypeNames[GoodsType.GEMS]: return GoodsType.GEMS
+    default: throw new Error(`${type} is not a valid type of goods`)
+  }
+}

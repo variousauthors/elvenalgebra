@@ -33,7 +33,7 @@ interface IAction<T, K> extends Action<T> {
 
 interface IManufactoriesAction extends IAction<ManufactoriesActions, IManufactory> {}
 
-type Tier = 'tier1' | 'tier2' | 'tier3'
+export type Tier = 'tier1' | 'tier2' | 'tier3'
 
 export const updateManufactory = (data: IManufactory & { tier: Tier }): IManufactoriesAction => {
   return {

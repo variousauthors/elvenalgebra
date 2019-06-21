@@ -1,50 +1,30 @@
 import React from 'react';
 
 import { ActionCreators } from '../../../reducers';
-import { IState, ITownFields, GoodsType, TIER_1_GOODS, GoodsTypeNames, TIER_2_GOODS, TIER_3_GOODS } from '../../../types';
+import { IState, ITownFields, GoodsType } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft } from '../../../hooks';
 import { InputInteger, InputSelect } from '../../Inputs';
 import { Panel } from '../../../layouts'
-import update from 'ramda/es/update';
+import { GoodsSelectOptions } from '../../../helpers';
 
 interface IBoostedGoodsSelectProps {
-  boostedT1: GoodsType
-  boostedT2: GoodsType
-  boostedT3: GoodsType
+  tier1: GoodsType
+  tier2: GoodsType
+  tier3: GoodsType
 
   update: (value: Partial<ITownFields>) => void
 }
 
 const BoostedGoodsSelect = (props: IBoostedGoodsSelectProps) => {
-  const { boostedT1, boostedT2, boostedT3, update } = props
-
-  const tier1 = TIER_1_GOODS.reduce((acc, goodsType) => {
-    return acc.concat({
-      value: String(goodsType),
-      label: GoodsTypeNames[goodsType]
-    })
-  }, [{ value: String(GoodsType.NONE), label: 'None' }])
-
-  const tier2 = TIER_2_GOODS.reduce((acc, goodsType) => {
-    return acc.concat({
-      value: String(goodsType),
-      label: GoodsTypeNames[goodsType]
-    })
-  }, [{ value: String(GoodsType.NONE), label: 'None' }])
-
-  const tier3 = TIER_3_GOODS.reduce((acc, goodsType) => {
-    return acc.concat({
-      value: String(goodsType),
-      label: GoodsTypeNames[goodsType]
-    })
-  }, [{ value: String(GoodsType.NONE), label: 'None' }])
+  const { tier1, tier2, tier3, update } = props
+  const options = GoodsSelectOptions
 
   return (
     <>
-      <InputSelect label='Tier 1 Boost' value={String(boostedT1)} options={tier1} onChange={(value) => update({ boostedT1: parseInt(value) })} />
-      <InputSelect label='Tier 2 Boost' value={String(boostedT2)} options={tier2} onChange={(value) => update({ boostedT2: parseInt(value) })} />
-      <InputSelect label='Tier 3 Boost' value={String(boostedT3)} options={tier3} onChange={(value) => update({ boostedT3: parseInt(value) })} />
+      <InputSelect label='Tier 1 Boost' value={String(tier1)} options={options.tier1} onChange={(value) => update({ tier1: parseInt(value) })} />
+      <InputSelect label='Tier 2 Boost' value={String(tier2)} options={options.tier2} onChange={(value) => update({ tier2: parseInt(value) })} />
+      <InputSelect label='Tier 3 Boost' value={String(tier3)} options={options.tier3} onChange={(value) => update({ tier3: parseInt(value) })} />
     </>
   )
 }

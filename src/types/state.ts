@@ -5,9 +5,9 @@ export interface ITownFields {
   population: number
   workingPopulation: number
   roadsCulture: number
-  boostedT1: GoodsType.MARBLE | GoodsType.STEEL | GoodsType.WOOD | GoodsType.NONE
-  boostedT2: GoodsType.CRYSTAL | GoodsType.SCROLLS | GoodsType.SILK | GoodsType.NONE
-  boostedT3: GoodsType.ELIXIR | GoodsType.DUST | GoodsType.SCROLLS | GoodsType.NONE
+  tier1: GoodsType
+  tier2: GoodsType
+  tier3: GoodsType
 }
 
 export interface IResidenceFields {

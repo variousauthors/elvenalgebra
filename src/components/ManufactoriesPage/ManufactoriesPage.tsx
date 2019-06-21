@@ -15,6 +15,8 @@ export function ManufactoriesPage() {
   return (
     <div className={classes.root}>
       <ManufactoryPanel tier='tier1'/>
+      <ManufactoryPanel tier='tier2'/>
+      <ManufactoryPanel tier='tier3'/>
     </div>
   );
 }
