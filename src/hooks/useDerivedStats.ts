@@ -1,5 +1,5 @@
 import { useSelect } from "@epeli/redux-hooks";
-import { IState } from '../types';
+import { IState, IManufactory } from '../types';
 
 const useCulturePerSquare = () => {
   const { cultureFields } = useSelect(selectFields)
@@ -47,30 +47,40 @@ const useSuppliesPerSquare24Hr = () => {
   return supplyPer24HrPerSquare * playstyleFields.cultureBonus
 }
 
-const useGoodsPerSquare24Hr = () => {
+const useGoodPerSquare24Hr = (manufactory: IManufactory) => {
   const culturePerSquare = useCulturePerSquare()
   const popPerSquare = usePopPerSquare()
   const supplyPer24HrPerSquare = useSuppliesPerSquare24Hr()
 
-  const { manufactories, townFields, playstyleFields, goldenAbyssFields } = useSelect(selectFields)
-  const tier1 = manufactories.tier1
+  const { townFields, playstyleFields, goldenAbyssFields } = useSelect(selectFields)
 
-  const manuFactoryPopulation = tier1.population
+  const manuFactoryPopulation = manufactory.population - (manufactory.population * goldenAbyssFields.percent)
 
-  const roadSquares = Math.min(tier1.width, tier1.height)
-  const cultureCost = tier1.culture - (roadSquares * townFields.roadsCulture)
+  const roadSquares = Math.min(manufactory.width, manufactory.height)
+  const cultureCost = manufactory.culture - (roadSquares * townFields.roadsCulture)
   const cultureSquares = cultureCost / culturePerSquare
   const residenceSquares = manuFactoryPopulation / popPerSquare
-  const suppliesCost = tier1.supply3Hr * playstyleFields.daily3HrCollections + tier1.supply9Hr * playstyleFields.daily9HrCollections
+  const suppliesCost = manufactory.supply3Hr * playstyleFields.daily3HrCollections + manufactory.supply9Hr * playstyleFields.daily9HrCollections
   const workshopSquares = suppliesCost / supplyPer24HrPerSquare
 
-  const area = tier1.width * tier1.height
+  const area = manufactory.width * manufactory.height
   const effectiveArea = area + roadSquares + cultureSquares + residenceSquares + workshopSquares
 
-  const goodsPer24Hr = playstyleFields.daily3HrCollections * tier1.goods3Hr + playstyleFields.daily9HrCollections * tier1.goods9Hr
+  const goodsPer24Hr = playstyleFields.daily3HrCollections * manufactory.goods3Hr + playstyleFields.daily9HrCollections * manufactory.goods9Hr
   const goodsPer24HrPerSquare = goodsPer24Hr / effectiveArea
 
   return goodsPer24HrPerSquare
+}
+
+const useGoodsPerSquare24Hr = () => {
+  const { manufactories } = useSelect(selectFields)
+
+  // TODO using 7 instead of the percent here
+  return {
+    tier1: 7 * useGoodPerSquare24Hr(manufactories.tier1),
+    tier2: 7 * useGoodPerSquare24Hr(manufactories.tier2),
+    tier3: 7 * useGoodPerSquare24Hr(manufactories.tier3),
+  }
 }
 
 const useGoldenAbyssEfficiency = () => {
@@ -127,7 +137,11 @@ export interface IDerivedStats {
   culturePerSquare: number
   popPerSquare: number
   supplyPer24HrPerSquare: number
-  goodsPerSquare24Hr: number
+  goodsPerSquare24Hr: {
+    tier1: number
+    tier2: number
+    tier3: number
+  }
   manaPerHrPerSquare: number
   goldenAbyssEfficiency: number
   prosperityTowersEfficiency: number

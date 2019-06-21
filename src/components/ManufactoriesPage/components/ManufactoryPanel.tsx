@@ -1,15 +1,22 @@
 import React from 'react';
 
 import { ActionCreators } from '../../../reducers';
-import { IState, GoodsTypeNames, IManufactory, GoodsType } from '../../../types';
+import { IState, GoodsTypeNames, IManufactory } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
 import { Panel } from '../../../layouts'
 import { InputInteger, InputSelect } from '../../Inputs';
 import { GoodsSelectOptions } from '../../../helpers';
+import { head, last, slice, toUpper } from 'ramda'
 
 interface IManufactoryPanelProps {
   tier: 'tier1' | 'tier2' | 'tier3'
+}
+
+const formatTierString = (value: string) => {
+  const middle = slice(1, value.length - 1)
+
+  return `${toUpper(head(value))}${middle(value)} ${last(value)}`
 }
 
 export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
@@ -25,8 +32,8 @@ export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
       actions.updateTownFields({ [props.tier]: draft.goodsType })
 
       return actions.updateManufactory({
+        ...data,
         tier: props.tier,
-        ...data
       })
     } 
   })
@@ -36,9 +43,9 @@ export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
 
   return (
     <Panel
-      label={'Tier 1'}
-      hint={GoodsTypeNames[draft.goodsType]}
-      summary={`Goods/Square: ${Math.round(goodsPerSquare24Hr)}`}
+      label={`${formatTierString(props.tier)}: ${GoodsTypeNames[draft.goodsType]}`}
+      hint={`Level ${draft.level}`}
+      summary={`Daily Goods/Square: ${Math.round(goodsPerSquare24Hr[props.tier])}`}
       onSaveClicked={publish}
     >
       <>
@@ -48,6 +55,7 @@ export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
           options={options}
           onChange={(value) => update({ goodsType: parseInt(value) })}
         />
+        <InputInteger value={draft.level} label='Level' name='level' onChange={update} />
         <InputInteger value={draft.culture} label='Culture' name='culture' onChange={update} />
         <InputInteger value={draft.population} label='Population' name='population' onChange={update} />
         <InputInteger value={draft.width} label='Width' name='width' onChange={update} />

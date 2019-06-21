@@ -1,4 +1,4 @@
-import { ITownFields, IManufactory, IManufactories } from "../../types/state";
+import { IManufactory, IManufactories } from "../../types/state";
 import { Action } from "redux";
 import { GoodsType } from "../../types";
 
@@ -22,36 +22,24 @@ const initialState: IManufactories = {
 }
 
 enum ManufactoriesActions {
-  UPDATE_TIER_1_MANUFACTORY = 'UPDATE_TIER_1_MANUFACTORY',
-  UPDATE_TIER_2_MANUFACTORY = 'UPDATE_TIER_2_MANUFACTORY',
-  UPDATE_TIER_3_MANUFACTORY = 'UPDATE_TIER_3_MANUFACTORY',
+  UPDATE_MANUFACTORY = 'UPDATE_MANUFACTORY',
 }
 
 interface IAction<T, K> extends Action<T> {
   data: K
 }
 
-interface IManufactoriesAction extends IAction<ManufactoriesActions, IManufactory> {}
+interface IManufactoryByTier extends IManufactory {
+  tier: Tier
+}
+
+interface IManufactoriesAction extends IAction<ManufactoriesActions, IManufactoryByTier> {}
 
 export type Tier = 'tier1' | 'tier2' | 'tier3'
 
-export const updateManufactory = (data: IManufactory & { tier: Tier }): IManufactoriesAction => {
+export const updateManufactory = (data: IManufactoryByTier): IManufactoriesAction => {
   return {
-    type: ManufactoriesActions.UPDATE_TIER_1_MANUFACTORY,
-    data
-  }
-}
-
-export const updateTier2Manufactory = (data: IManufactory): IManufactoriesAction => {
-  return {
-    type: ManufactoriesActions.UPDATE_TIER_2_MANUFACTORY,
-    data
-  }
-}
-
-export const updateTier3Manufactory = (data: IManufactory): IManufactoriesAction => {
-  return {
-    type: ManufactoriesActions.UPDATE_TIER_3_MANUFACTORY,
+    type: ManufactoriesActions.UPDATE_MANUFACTORY,
     data
   }
 }
@@ -59,29 +47,13 @@ export const updateTier3Manufactory = (data: IManufactory): IManufactoriesAction
 export const manufactories = (state: IManufactories = initialState, action: IManufactoriesAction): IManufactories => {
 
   switch (action.type) {
-    case ManufactoriesActions.UPDATE_TIER_1_MANUFACTORY: {
+    case ManufactoriesActions.UPDATE_MANUFACTORY: {
+      const tier = action.data.tier
+
       return {
         ...state,
-        tier1: {
-          ...state.tier1,
-          ...action.data,
-        }
-      }
-    }
-    case ManufactoriesActions.UPDATE_TIER_2_MANUFACTORY: {
-      return {
-        ...state,
-        tier1: {
-          ...state.tier2,
-          ...action.data,
-        }
-      }
-    }
-    case ManufactoriesActions.UPDATE_TIER_3_MANUFACTORY: {
-      return {
-        ...state,
-        tier1: {
-          ...state.tier3,
+        [tier]: {
+          ...state[tier],
           ...action.data,
         }
       }

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useUUID } from '../../hooks';
-import { isNil } from 'ramda';
 
 interface ISelectOption {
   value: string

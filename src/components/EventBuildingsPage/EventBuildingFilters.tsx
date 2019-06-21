@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Panel } from './components'
 import { useSelect, useActionCreators } from '@epeli/redux-hooks';
 import { IState, IScoreFilter } from '../../types';
-import { InputText, InputInteger, InputPercent } from '../Inputs';
+import { InputText, InputPercent } from '../Inputs';
 import { ActionCreators } from '../../reducers';
 
 const useStyles = makeStyles((theme) => ({
