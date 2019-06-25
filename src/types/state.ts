@@ -137,6 +137,11 @@ export interface IEventBuildingAttributes {
   mana: number
   population: number
   supply24Hr: number
+  goods24Hr: {
+    tier1: number
+    tier2: number
+    tier3: number
+  }
   name: string
 }
 

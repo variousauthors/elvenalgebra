@@ -32,6 +32,9 @@ export const EventBuildingFields = React.memo((props: IEventBuildingFieldsProps)
       <InputInteger value={draft.culture} name='culture' onChange={update} />
       <InputInteger value={draft.population} name='population' onChange={update} />
       <InputInteger value={draft.supply24Hr} name='supply24Hr' onChange={update} />
+      <InputInteger value={draft.goods24Hr.tier1} name='tier1' onChange={(value) => update({ goods24Hr: { ...draft.goods24Hr, ...value }}) } />
+      <InputInteger value={draft.goods24Hr.tier2} name='tier2' onChange={(value) => update({ goods24Hr: { ...draft.goods24Hr, ...value }}) } />
+      <InputInteger value={draft.goods24Hr.tier3} name='tier3' onChange={(value) => update({ goods24Hr: { ...draft.goods24Hr, ...value }}) } />
       <InputInteger value={draft.width} name='width' onChange={update} />
       <InputInteger value={draft.height} name='height' onChange={update} />
 

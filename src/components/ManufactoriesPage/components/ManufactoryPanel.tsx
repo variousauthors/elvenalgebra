@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ActionCreators } from '../../../reducers';
+import { ActionCreators, playstyleFields } from '../../../reducers';
 import { IState, GoodsTypeNames, IManufactory } from '../../../types';
 import { useMapState, useActionCreators } from "@epeli/redux-hooks";
 import { useDraft, useDerivedStats } from '../../../hooks';
@@ -8,6 +8,7 @@ import { Panel } from '../../../layouts'
 import { InputInteger, InputSelect } from '../../Inputs';
 import { GoodsSelectOptions } from '../../../helpers';
 import { head, last, slice, toUpper } from 'ramda'
+import { useManufactoryStats } from '../hooks/useManufactoryStats';
 
 interface IManufactoryPanelProps {
   tier: 'tier1' | 'tier2' | 'tier3'
@@ -23,6 +24,7 @@ export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
   const actions = useActionCreators(ActionCreators)
   const fields = useMapState((state: IState) => state.manufactories[props.tier])
   const town = useMapState((state: IState) => state.townFields)
+  const playstyle = useMapState((state: IState) => state.playstyleFields)
   const currentGoodsType = town[props.tier]
 
   const { draft, update, publish } = useDraft({
@@ -39,7 +41,10 @@ export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
   })
 
   const { goodsPerSquare24Hr } = useDerivedStats()
+  const { effectiveArea } = useManufactoryStats(draft)
   const options = GoodsSelectOptions[props.tier]
+  const totalProduction = 8 * (draft.goods3Hr * playstyle.daily3HrCollections) + (draft.goods9Hr * playstyle.daily9HrCollections)
+  const productionPerTile = totalProduction / effectiveArea
 
   return (
     <Panel
@@ -68,6 +73,13 @@ export const ManufactoryPanel = (props: IManufactoryPanelProps) => {
         <h3>9 Hour Production</h3>
         <InputInteger value={draft.supply9Hr} label='Supplies Consumed' name='supply9Hr' onChange={update} />
         <InputInteger value={draft.goods9Hr} label='Goods Produced' name='goods9Hr' onChange={update} />
+
+        <div>
+          <h4>Notes</h4>
+          <InputInteger value={totalProduction} label='Total Production' name='totalProduction' readOnly />
+          <InputInteger value={effectiveArea} label='Effective Area' name='effectiveArea' readOnly />
+          <InputInteger value={productionPerTile} label='Daily Goods / Tile' name='dailyGoodsPerTile' readOnly />
+        </div>
       </>
     </Panel>
   )

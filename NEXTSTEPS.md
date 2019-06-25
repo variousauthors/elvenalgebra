@@ -4,32 +4,36 @@ NEXTSTEPS
 # Backlog
 
 ## Unestimated
- - when creating a new event building
-   - the name field should get focus
-   - scroll to that event building
-
- - Manufactory prototype
-   - size, level
-   - generic goods / 3hr and 9hr
-   - boosted checkbox
-   - this will just help me see the effective area of a manufactory
-     so that I can think about stuff
-
-## Easy
- - Event Building Sorting/Filters on the top of the page
-   - filter by name
-   - sort by id (default), alpha, efficiency
-   - filter by supply/population/mana/culture
-   - filter by score (gte, lte)
-   - filter by collections (below)
- - Add Manufactories <-- lots of effort but very little thinking
- - Display the "breakdown" of effective area
+ - Traveling Merchant is currently underrated because it is being compared with
+   Boosted Manufactories.
+   - add "trades" matrix to playstyle describing how you usually trade
  - Start importing and using icons from the game
  - Collections: in the side bar, add a "collection" item with a "+ add collection" sub item; navigating
    to a collection gives you a subset of the event buildings, those which have been added to that collection
    - Then: collection manager in the event building card
    - the tabs can just be the event-buildings route with the collection filter pre-set
+   - filter by collections (below)
+ - when creating a new event building
+   - the name field should get focus
+   - scroll to that event building
+
+## Easy
+ - Event Building Sorting/Filters on the top of the page
+   - [x] filter by name
+   - sort by id (default), alpha, efficiency
+   - filter by supply/population/mana/culture
+   - [x] filter by score (gte, lte)
+ - Add Manufactories <-- lots of effort but very little thinking
+   - Think about what is left to be done ;)
+   - [x] Manufactory prototype
+     - size, level
+     - generic goods / 3hr and 9hr
+     - boosted checkbox
+     - this will just help me see the effective area of a manufactory
+        so that I can think about stuff
+ - Display the "breakdown" of effective area
  - Redesign the Event Building Card
+   - a symbol appears when supplies/goods/culture/pop is > 0 indicating the category
 
 ## Hard
  - Scrape residence/workshop data to reduce data entry
@@ -56,11 +60,11 @@ NEXTSTEPS
    - this way a player can + town and compare
    - route/filters/redux etc should all be persisted across changes so that a player can set filters
      and then toggle between towns to compare realities
- - Evolving Buildings??? these can just be event buildings...
 
 # Done
  - [x] Add Culture Bonus to supply calculations in playstyle config
  - [x] Display event building's Score in a prominent way (red/yello/green)
+
 
 # Event Building Card
  - Needs a paper mock up including:

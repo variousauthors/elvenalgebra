@@ -31,6 +31,10 @@ export const ResidencePanel = () => {
         <InputInteger value={draft.width} name='width' onChange={update} />
         <InputInteger value={draft.height} name='height' onChange={update} />
         <InputInteger value={draft.population} name='population' onChange={update} />
+
+        <div>
+          <h4>Notes</h4>
+        </div>
       </>
     </Panel>
   )

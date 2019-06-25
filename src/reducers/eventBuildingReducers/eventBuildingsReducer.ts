@@ -14,6 +14,11 @@ const newEventBuilding: IEventBuildingAttributes = {
   population: 0,
   mana: 0,
   supply24Hr: 0,
+  goods24Hr: {
+    tier1: 0,
+    tier2: 0,
+    tier3: 0,
+  },
   name: ''
 }
 

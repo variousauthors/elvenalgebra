@@ -75,11 +75,11 @@ const useGoodPerSquare24Hr = (manufactory: IManufactory) => {
 const useGoodsPerSquare24Hr = () => {
   const { manufactories } = useSelect(selectFields)
 
-  // TODO using 7 instead of the percent here
+  // TODO using 8 instead of the percent here
   return {
-    tier1: 7 * useGoodPerSquare24Hr(manufactories.tier1),
-    tier2: 7 * useGoodPerSquare24Hr(manufactories.tier2),
-    tier3: 7 * useGoodPerSquare24Hr(manufactories.tier3),
+    tier1: 8 * useGoodPerSquare24Hr(manufactories.tier1),
+    tier2: 8 * useGoodPerSquare24Hr(manufactories.tier2),
+    tier3: 8 * useGoodPerSquare24Hr(manufactories.tier3),
   }
 }
 
